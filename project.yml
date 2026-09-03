@@ -19,8 +19,6 @@ settings:
   base:
     SWIFT_VERSION: "6.0"
     SWIFT_STRICT_CONCURRENCY: complete
-    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
-    SWIFT_APPROACHABLE_CONCURRENCY: "YES"
     TARGETED_DEVICE_FAMILY: "1"
     ENABLE_USER_SCRIPT_SANDBOXING: "YES"
     IPHONEOS_DEPLOYMENT_TARGET: "17.0"
@@ -77,14 +75,27 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.timalpers.shopping.tests
+        GENERATE_INFOPLIST_FILE: "YES"
+  FeedUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [FeedUITests]
+    dependencies:
+      - target: Feed
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.timalpers.shopping.uitests
+        GENERATE_INFOPLIST_FILE: "YES"
+        TEST_TARGET_NAME: Feed
 schemes:
   Feed:
     build:
       targets:
         Feed: all
         FeedTests: [test]
+        FeedUITests: [test]
     run:
       config: Debug
     test:
       config: Debug
-      targets: [FeedTests]
+      targets: [FeedTests, FeedUITests]

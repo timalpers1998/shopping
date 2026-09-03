@@ -14,7 +14,7 @@ A never-ending, hyper-personalized vertical feed of shoppable posts from creator
 
 ## Milestones
 - [x] M0 Bootstrap
-- [ ] M1 Static feed
+- [x] M1 Static feed
 - [ ] M2 Live backend
 - [ ] M3 Auth + social
 - [ ] M4 Composer (images)

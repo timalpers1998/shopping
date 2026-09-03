@@ -1,0 +1,231 @@
+{
+  "request_id": "feed_following",
+  "next_cursor": null,
+  "items": [
+    {
+      "id": "c709fafa-6de5-4a48-afb2-b3542788fd8c",
+      "kind": "carousel",
+      "caption": "the perfect camel coat for fall 🍂 wearing it with my go-to loafers and straight jeans",
+      "created_at": "2026-09-03T18:54:22.832Z",
+      "category": "fashion",
+      "style_tags": [
+        "old_money",
+        "minimalist",
+        "workwear"
+      ],
+      "author": {
+        "id": "a545a074-6a21-4dca-a9c1-fa2af4309b02",
+        "handle": "mia.styles",
+        "display_name": "Mia Chen",
+        "kind": "creator",
+        "is_verified": true,
+        "avatar_url": "https://picsum.photos/seed/mia/200/200",
+        "is_following": false
+      },
+      "media": [
+        {
+          "id": "acf860ff-82f8-4b16-ae79-5968f79334d1",
+          "type": "image",
+          "url": "https://picsum.photos/seed/camel-coat-fall-0/1080/1440",
+          "thumbnail_url": "https://picsum.photos/seed/camel-coat-fall-0/540/720",
+          "width": 1080,
+          "height": 1440,
+          "duration_seconds": null,
+          "position": 0
+        },
+        {
+          "id": "770b8d48-8fd0-4f3b-a2ab-521670607263",
+          "type": "image",
+          "url": "https://picsum.photos/seed/camel-coat-fall-1/1080/1440",
+          "thumbnail_url": "https://picsum.photos/seed/camel-coat-fall-1/540/720",
+          "width": 1080,
+          "height": 1440,
+          "duration_seconds": null,
+          "position": 1
+        },
+        {
+          "id": "fcfa58e3-5e6d-4efc-a9d1-80cb6d07fea1",
+          "type": "image",
+          "url": "https://picsum.photos/seed/camel-coat-fall-2/1080/1440",
+          "thumbnail_url": "https://picsum.photos/seed/camel-coat-fall-2/540/720",
+          "width": 1080,
+          "height": 1440,
+          "duration_seconds": null,
+          "position": 2
+        }
+      ],
+      "products": [
+        {
+          "id": "bf87f80b-ed13-40c7-a82e-8720f13acdff",
+          "title": "Double-faced wool wrap coat",
+          "brand": "Toteme",
+          "merchant": "toteme-studio.com",
+          "price_cents": 129000,
+          "currency": "USD",
+          "url": "https://toteme-studio.com/products/signature-wool-cashmere-coat",
+          "image_url": "https://picsum.photos/seed/p-camel-coat/600/800",
+          "position": 0
+        },
+        {
+          "id": "5ba48e5f-b0aa-4e77-ae85-6bd77705bc7b",
+          "title": "Leather penny loafers",
+          "brand": "Coach",
+          "merchant": "coach.com",
+          "price_cents": 19500,
+          "currency": "USD",
+          "url": "https://www.coach.com/products/leather-loafer",
+          "image_url": "https://picsum.photos/seed/p-loafers/600/800",
+          "position": 1
+        },
+        {
+          "id": "7e3a7887-4fa7-470b-adbc-9ce76baab550",
+          "title": "501 Original straight jeans",
+          "brand": "Levi's",
+          "merchant": "levi.com",
+          "price_cents": 9800,
+          "currency": "USD",
+          "url": "https://www.levi.com/US/en_US/clothing/women/jeans/501-original-fit-womens-jeans/p/125010400",
+          "image_url": "https://picsum.photos/seed/p-jeans/600/800",
+          "position": 2
+        }
+      ],
+      "stats": {
+        "likes": 2155,
+        "comments": 15,
+        "saves": 925
+      },
+      "viewer": {
+        "liked": false,
+        "saved": false
+      }
+    },
+    {
+      "id": "26f311a0-de14-458c-adae-d30204f6e39c",
+      "kind": "carousel",
+      "caption": "New season basics. The box-cut tee and the drape pant, together at last.",
+      "created_at": "2026-09-01T23:42:22.837Z",
+      "category": "fashion",
+      "style_tags": [
+        "minimalist"
+      ],
+      "author": {
+        "id": "c7dd2a63-a8ab-4c25-a42b-dce1c32257b1",
+        "handle": "everlane",
+        "display_name": "Everlane",
+        "kind": "brand",
+        "is_verified": true,
+        "avatar_url": "https://picsum.photos/seed/everlane/200/200",
+        "is_following": false
+      },
+      "media": [
+        {
+          "id": "c7624e7b-1b52-4d6e-afc5-bad045473807",
+          "type": "image",
+          "url": "https://picsum.photos/seed/everlane-basics-0/1080/1440",
+          "thumbnail_url": "https://picsum.photos/seed/everlane-basics-0/540/720",
+          "width": 1080,
+          "height": 1440,
+          "duration_seconds": null,
+          "position": 0
+        },
+        {
+          "id": "a666aa72-8f2b-4ede-a0e8-be3ee5ed20e2",
+          "type": "image",
+          "url": "https://picsum.photos/seed/everlane-basics-1/1080/1440",
+          "thumbnail_url": "https://picsum.photos/seed/everlane-basics-1/540/720",
+          "width": 1080,
+          "height": 1440,
+          "duration_seconds": null,
+          "position": 1
+        }
+      ],
+      "products": [
+        {
+          "id": "67b55791-44e9-43af-a338-057750bd6c99",
+          "title": "Organic cotton box-cut tee",
+          "brand": "Everlane",
+          "merchant": "everlane.com",
+          "price_cents": 3500,
+          "currency": "USD",
+          "url": "https://www.everlane.com/products/womens-organic-cotton-box-cut-tee",
+          "image_url": "https://picsum.photos/seed/p-tee/600/800",
+          "position": 0
+        },
+        {
+          "id": "76449b0f-7d44-4c16-a71a-a168a21580fa",
+          "title": "The way-high drape pant",
+          "brand": "Everlane",
+          "merchant": "everlane.com",
+          "price_cents": 11800,
+          "currency": "USD",
+          "url": "https://www.everlane.com/products/womens-way-high-drape-pant",
+          "image_url": "https://picsum.photos/seed/p-trousers/600/800",
+          "position": 1
+        }
+      ],
+      "stats": {
+        "likes": 2155,
+        "comments": 15,
+        "saves": 925
+      },
+      "viewer": {
+        "liked": false,
+        "saved": false
+      }
+    },
+    {
+      "id": "55a8c2c7-d362-4787-aa22-cc47bad34a52",
+      "kind": "image",
+      "caption": "picnic dress season is here 🌸",
+      "created_at": "2026-08-31T23:42:22.837Z",
+      "category": "fashion",
+      "style_tags": [
+        "cottagecore",
+        "coastal"
+      ],
+      "author": {
+        "id": "a545a074-6a21-4dca-a9c1-fa2af4309b02",
+        "handle": "mia.styles",
+        "display_name": "Mia Chen",
+        "kind": "creator",
+        "is_verified": true,
+        "avatar_url": "https://picsum.photos/seed/mia/200/200",
+        "is_following": false
+      },
+      "media": [
+        {
+          "id": "d782821d-531b-4eda-ae96-7b9d5da8a6f4",
+          "type": "image",
+          "url": "https://picsum.photos/seed/cottage-picnic-0/1080/1440",
+          "thumbnail_url": "https://picsum.photos/seed/cottage-picnic-0/540/720",
+          "width": 1080,
+          "height": 1440,
+          "duration_seconds": null,
+          "position": 0
+        }
+      ],
+      "products": [
+        {
+          "id": "4fed1cf5-6c5c-4635-a690-370df4563ec8",
+          "title": "Floral smocked midi dress",
+          "brand": "Reformation",
+          "merchant": "thereformation.com",
+          "price_cents": 27800,
+          "currency": "USD",
+          "url": "https://www.thereformation.com/products/midi-dress",
+          "image_url": "https://picsum.photos/seed/p-midi/600/800",
+          "position": 0
+        }
+      ],
+      "stats": {
+        "likes": 2018,
+        "comments": 2,
+        "saves": 866
+      },
+      "viewer": {
+        "liked": false,
+        "saved": false
+      }
+    }
+  ]
+}
