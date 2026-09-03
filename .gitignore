@@ -1,0 +1,27 @@
+# Xcode / build
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcodeproj/*
+!*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+.swiftpm/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Secrets
+Feed/Config/Secrets.xcconfig
+supabase/.env
+supabase/functions/.env
+.env
+.env.*
+
+# Supabase local
+supabase/.branches
+supabase/.temp
+
+# macOS
+.DS_Store
+node_modules/

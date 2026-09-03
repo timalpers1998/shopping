@@ -1,0 +1,11 @@
+{
+  "name": "shopping-feed-tools",
+  "private": true,
+  "description": "Dev tooling for the Feed app (Supabase CLI via npm; no Homebrew CLT dependency)",
+  "devDependencies": {
+    "supabase": "^2.0.0"
+  },
+  "scripts": {
+    "supabase": "supabase"
+  }
+}
