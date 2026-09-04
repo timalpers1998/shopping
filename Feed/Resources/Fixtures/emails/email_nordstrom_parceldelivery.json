@@ -1,0 +1,10 @@
+{
+  "id": "fx-nordstrom-1",
+  "provider": "fixture",
+  "from_address": "shipping@eml.nordstrom.com",
+  "from_name": "Nordstrom",
+  "subject": "Your Nordstrom order has shipped",
+  "received_at": "2026-07-30T12:00:00Z",
+  "text": null,
+  "html": "<html><body><script type=\"application/ld+json\">{\"@context\":\"http://schema.org\",\"@type\":\"ParcelDelivery\",\"deliveryAddress\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"REDACTED\"},\"partOfOrder\":{\"@type\":\"Order\",\"orderNumber\":\"N-88\",\"merchant\":{\"@type\":\"Organization\",\"name\":\"Nordstrom\"}},\"itemShipped\":[{\"@type\":\"Product\",\"name\":\"Toteme Signature Wool Cashmere Coat\",\"image\":\"https://loremflickr.com/600/800/jacket?lock=3\",\"url\":\"https://www.nordstrom.com/s/toteme-coat/12345\"}]}</script><p>Your package is on its way.</p></body></html>"
+}

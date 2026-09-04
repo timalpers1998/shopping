@@ -20,6 +20,7 @@ struct SettingsView: View {
             }
             Section("Taste") {
                 Button("Redo the style quiz") { router.present(.onboarding) }
+                NavigationLink("Imported purchases", value: Route.importedPurchases).accessibilityIdentifier("settings-imported-purchases")
             }
             Section("About") {
                 LabeledContent("Version", value: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")

@@ -67,7 +67,20 @@ struct MainTabView: View {
             switch route {
             case .productBrowser(let url): ProductBrowserView(url: url).ignoresSafeArea()
             case .compose: ComposeFlowView { post in feedModel?.insertNewPost(post) }
-            case .onboarding: OnboardingFlowView { router.cover = nil; Task { await feedModel?.store.refresh(); feedModel?.activePostChanged(in: feedModel!.store) } }
+            case .onboarding:
+                OnboardingFlowView { submitted in
+                    router.cover = nil
+                    if submitted, !ProcessInfo.processInfo.arguments.contains("-skip-purchase-import"), !env.mailProviders.filter(\.isAvailable).isEmpty {
+                        Task { try? await Task.sleep(for: .milliseconds(350)); router.present(.purchaseImport) }
+                    } else {
+                        Task { await feedModel?.store.refresh(); if let s = feedModel?.store { feedModel?.activePostChanged(in: s) } }
+                    }
+                }
+            case .purchaseImport:
+                PurchaseImportFlowView { _ in
+                    router.cover = nil
+                    Task { await feedModel?.store.refresh(); if let s = feedModel?.store { feedModel?.activePostChanged(in: s) } }
+                }
             }
         }
         .task {
@@ -88,6 +101,7 @@ struct RouteView: View {
         case .post(let id): PlaceholderScreen(title: "Post \(id.uuidString.prefix(6))")
         case .pager(let payload): PostPagerView(payload: payload)
         case .settings: SettingsView()
+        case .importedPurchases: ImportedPurchasesView()
         }
     }
 }

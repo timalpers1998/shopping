@@ -10,7 +10,8 @@ struct OnboardingFlowView: View {
     @State private var catalog: QuizCatalog?
     @State private var busy = false
     @State private var brandQuery = ""
-    var onDone: () -> Void
+    /// Called with `true` when answers were submitted, `false` when skipped.
+    var onDone: (Bool) -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -61,7 +62,7 @@ struct OnboardingFlowView: View {
             await env.refreshMe()
             UserDefaults.standard.set(true, forKey: "onboarding.shown")
             busy = false
-            onDone()
+            onDone(submit)
         }
     }
 

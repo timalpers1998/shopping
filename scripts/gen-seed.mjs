@@ -4,6 +4,14 @@ import { createHash } from "node:crypto";
 
 const uuid = (s) => { const h = createHash("sha1").update(s).digest("hex"); return `${h.slice(0,8)}-${h.slice(8,12)}-4${h.slice(13,16)}-a${h.slice(17,20)}-${h.slice(20,32)}`; };
 const pic = (seed, w = 1080, h = 1440) => `https://picsum.photos/seed/${seed}/${w}/${h}`;
+// Tag-based fashion placeholders (loremflickr pools are small, so keep lock indexes low). Falls back to picsum.
+const TAG_BY_STYLE = { minimalist: "outfit", old_money: "blazer", streetwear: "hoodie", athleisure: "sneaker", workwear: "suit", scandi: "sweater", model_off_duty: "jeans", gorpcore: "jacket", coastal: "clothes", cottagecore: "skirt", y2k: "tshirt", preppy: "shirt", glam: "fashion", vintage: "denim", boho: "wardrobe", grunge: "leather", coquette: "model", western: "boots" };
+const TAG_BY_WORD = [["coat","jacket"],["loafer","shoes"],["jean","jeans"],["hoodie","hoodie"],["cargo","clothes"],["jordan","sneaker"],["legging","clothing"],["zip","hoodie"],["blazer","blazer"],["tank","tshirt"],["tee","tshirt"],["pant","jeans"],["shell","jacket"],["cardigan","sweater"],["xt-6","sneaker"],["dress","fashion"],["skirt","skirt"],["tote","handbag"],["linen","shirt"],["trench","jacket"],["cashmere","sweater"],["ballet","shoes"],["bow","fashion"],["boot","boots"],["flannel","shirt"],["polo","shirt"],["chino","clothes"],["hoody","hoodie"],["sweater","sweater"],["sequin","fashion"],["slip","fashion"],["leather","leather"],["set","clothing"],["samba","sneaker"],["bag","handbag"]];
+const hashNum = (s) => { let h = 0; for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h; };
+const tagFor = (text, styles = []) => "lookbook";
+const postTag = (audience) => audience === "mens" ? "menswear" : "ootd";
+const img = (tag, seed, w = 1080, h = 1440) => `https://loremflickr.com/${w}/${h}/${tag}?lock=${1 + (hashNum(seed) % 9)}`;
+
 const q = (s) => s == null ? "null" : `'${String(s).replace(/'/g, "''")}'`;
 const arr = (a) => `'{${a.map((x) => `"${x}"`).join(",")}}'`;
 
@@ -113,18 +121,18 @@ sql += `insert into auth.identities (id, user_id, provider_id, provider, identit
 sql += Object.values(users).map((u) => `  (gen_random_uuid(), ${q(u.id)}, ${q(u.id)}, 'email', ${q(JSON.stringify({ sub: u.id, email: u.email, email_verified: true }))}::jsonb, now(), now(), now())`).join(",\n") + `\non conflict do nothing;\n\n`;
 
 sql += `insert into public.authors (id, kind, handle, display_name, bio, avatar_url, website_url, verified, owner_user_id, source_network)\nvalues\n`;
-sql += authors.map((a) => `  (${q(a.id)}, ${q(a.kind)}, ${q(a.handle)}, ${q(a.name)}, ${q(a.bio)}, ${q(pic("avatar-" + a.handle, 200, 200))}, ${q(a.site ?? null)}, ${a.verified}, ${q(a.owner)}, ${a.kind === "brand" ? "'manual'" : "null"})`).join(",\n") + `\non conflict (id) do nothing;\n\n`;
+sql += authors.map((a) => `  (${q(a.id)}, ${q(a.kind)}, ${q(a.handle)}, ${q(a.name)}, ${q(a.bio)}, ${q(a.kind === "creator" ? img("model", "avatar-" + a.handle, 200, 200) : pic("avatar-" + a.handle, 200, 200))}, ${q(a.site ?? null)}, ${a.verified}, ${q(a.owner)}, ${a.kind === "brand" ? "'manual'" : "null"})`).join(",\n") + `\non conflict (id) do nothing;\n\n`;
 
 sql += `insert into public.products (id, author_id, merchant, brand, title, description, image_url, price_cents, currency, url, source_network, category)\nvalues\n`;
-sql += products.map((p) => `  (${q(p.id)}, ${q(p.author)}, ${q(p.merchant)}, ${q(p.brand)}, ${q(p.title)}, ${q(p.desc || null)}, ${q(pic("p-" + p.slug, 600, 800))}, ${p.cents}, 'USD', ${q(p.url)}, 'manual', 'fashion')`).join(",\n") + `\non conflict (id) do nothing;\n\n`;
+sql += products.map((p) => `  (${q(p.id)}, ${q(p.author)}, ${q(p.merchant)}, ${q(p.brand)}, ${q(p.title)}, ${q(p.desc || null)}, ${q(img(tagFor(p.title), "p-" + p.slug, 600, 800))}, ${p.cents}, 'USD', ${q(p.url)}, 'manual', 'fashion')`).join(",\n") + `\non conflict (id) do nothing;\n\n`;
 
 sql += `insert into public.posts (id, author_id, kind, caption, category, audience, style_tags, status, source, published_at)\nvalues\n`;
 sql += posts.map((p) => `  (${q(p.id)}, ${q(p.author.id)}, ${q(p.kind)}, ${q(p.caption)}, 'fashion', ${q(p.audience)}, ${arr(p.tags)}, 'published', 'app', now() - interval '${p.days} days')`).join(",\n") + `\non conflict (id) do nothing;\n\n`;
 
 const media = [];
 for (const p of posts) for (let i = 0; i < p.n; i++) media.push({ id: uuid(`media-${p.slug}-${i}`), post: p.id, pos: i, kind: p.kind === "video" ? "video" : "image",
-  url: p.kind === "video" ? "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" : pic(`${p.slug}-${i}`),
-  thumb: pic(`${p.slug}-${i}`, 540, 720), w: 1080, h: p.kind === "video" ? 1920 : 1440, dur: p.kind === "video" ? 15000 : null });
+  url: p.kind === "video" ? "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" : img(postTag(p.audience), `${p.slug}-${i}`),
+  thumb: img(postTag(p.audience), `${p.slug}-${i}`, 540, 720), w: 1080, h: p.kind === "video" ? 1920 : 1440, dur: p.kind === "video" ? 15000 : null });
 sql += `insert into public.post_media (id, post_id, position, kind, external_url, thumbnail_url, width, height, duration_ms)\nvalues\n`;
 sql += media.map((m) => `  (${q(m.id)}, ${q(m.post)}, ${m.pos}, ${q(m.kind)}, ${q(m.url)}, ${q(m.thumb)}, ${m.w}, ${m.h}, ${m.dur ?? "null"})`).join(",\n") + `\non conflict (id) do nothing;\n\n`;
 

@@ -4,18 +4,26 @@ import { createHash } from "node:crypto";
 
 const uuid = (s) => { const h = createHash("sha1").update(s).digest("hex"); return `${h.slice(0,8)}-${h.slice(8,12)}-4${h.slice(13,16)}-a${h.slice(17,20)}-${h.slice(20,32)}`; };
 const pic = (seed, w = 1080, h = 1440) => `https://picsum.photos/seed/${seed}/${w}/${h}`;
+// Tag-based fashion placeholders (loremflickr pools are small, so keep lock indexes low). Falls back to picsum.
+const TAG_BY_STYLE = { minimalist: "outfit", old_money: "blazer", streetwear: "hoodie", athleisure: "sneaker", workwear: "suit", scandi: "sweater", model_off_duty: "jeans", gorpcore: "jacket", coastal: "clothes", cottagecore: "skirt", y2k: "tshirt", preppy: "shirt", glam: "fashion", vintage: "denim", boho: "wardrobe", grunge: "leather", coquette: "model", western: "boots" };
+const TAG_BY_WORD = [["coat","jacket"],["loafer","shoes"],["jean","jeans"],["hoodie","hoodie"],["cargo","clothes"],["jordan","sneaker"],["legging","clothing"],["zip","hoodie"],["blazer","blazer"],["tank","tshirt"],["tee","tshirt"],["pant","jeans"],["shell","jacket"],["cardigan","sweater"],["xt-6","sneaker"],["dress","fashion"],["skirt","skirt"],["tote","handbag"],["linen","shirt"],["trench","jacket"],["cashmere","sweater"],["ballet","shoes"],["bow","fashion"],["boot","boots"],["flannel","shirt"],["polo","shirt"],["chino","clothes"],["hoody","hoodie"],["sweater","sweater"],["sequin","fashion"],["slip","fashion"],["leather","leather"],["set","clothing"],["samba","sneaker"],["bag","handbag"]];
+const hashNum = (s) => { let h = 0; for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h; };
+const tagFor = (text, styles = []) => "lookbook";
+const postTag = (audience) => audience === "mens" ? "menswear" : "ootd";
+const img = (tag, seed, w = 1080, h = 1440) => `https://loremflickr.com/${w}/${h}/${tag}?lock=${1 + (hashNum(seed) % 9)}`;
+
 const daysAgo = (d) => new Date(Date.now() - d * 86400e3).toISOString();
 
 const authors = {
-  mia:   { id: uuid("author-mia"),   handle: "mia.styles",   display_name: "Mia Chen",       kind: "creator", is_verified: true,  avatar_url: pic("mia", 200, 200) },
-  theo:  { id: uuid("author-theo"),  handle: "theo.fits",    display_name: "Theo Alvarez",   kind: "creator", is_verified: false, avatar_url: pic("theo", 200, 200) },
-  june:  { id: uuid("author-june"),  handle: "june.wardrobe",display_name: "June Okafor",    kind: "creator", is_verified: true,  avatar_url: pic("june", 200, 200) },
+  mia:   { id: uuid("author-mia"),   handle: "mia.styles",   display_name: "Mia Chen",       kind: "creator", is_verified: true,  avatar_url: img("model", "mia", 200, 200) },
+  theo:  { id: uuid("author-theo"),  handle: "theo.fits",    display_name: "Theo Alvarez",   kind: "creator", is_verified: false, avatar_url: img("model", "theo", 200, 200) },
+  june:  { id: uuid("author-june"),  handle: "june.wardrobe",display_name: "June Okafor",    kind: "creator", is_verified: true,  avatar_url: img("model", "june", 200, 200) },
   everlane: { id: uuid("author-everlane"), handle: "everlane", display_name: "Everlane", kind: "brand", is_verified: true, avatar_url: pic("everlane", 200, 200) },
   aritzia:  { id: uuid("author-aritzia"),  handle: "aritzia",  display_name: "Aritzia",  kind: "brand", is_verified: true, avatar_url: pic("aritzia", 200, 200) },
   arcteryx: { id: uuid("author-arcteryx"), handle: "arcteryx", display_name: "Arc'teryx", kind: "brand", is_verified: true, avatar_url: pic("arcteryx", 200, 200) },
 };
 
-const P = (slug, title, brand, merchant, cents, url) => ({ id: uuid("product-" + slug), title, brand, merchant, price_cents: cents, currency: "USD", url, image_url: pic("p-" + slug, 600, 800) });
+const P = (slug, title, brand, merchant, cents, url) => ({ id: uuid("product-" + slug), title, brand, merchant, price_cents: cents, currency: "USD", url, image_url: img(tagFor(title), "p-" + slug, 600, 800) });
 const products = {
   camelCoat: P("camel-coat", "Double-faced wool wrap coat", "Toteme", "toteme-studio.com", 129000, "https://toteme-studio.com/products/signature-wool-cashmere-coat"),
   loafers: P("loafers", "Leather penny loafers", "Coach", "coach.com", 19500, "https://www.coach.com/products/leather-loafer"),
@@ -44,8 +52,8 @@ const post = (slug, author, kind, caption, tags, prods, days, n = 1, stats) => (
   id: uuid("post-" + slug), kind, caption, created_at: daysAgo(days), category: "fashion", style_tags: tags,
   author: { ...author, is_following: false },
   media: Array.from({ length: n }, (_, i) => ({ id: uuid(`media-${slug}-${i}`), type: kind === "video" ? "video" : "image",
-    url: kind === "video" ? "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" : pic(`${slug}-${i}`),
-    thumbnail_url: pic(`${slug}-${i}`, 540, 720), width: 1080, height: kind === "video" ? 1920 : 1440, duration_seconds: kind === "video" ? 15 : null, position: i })),
+    url: kind === "video" ? "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" : img(postTag(undefined), `${slug}-${i}`),
+    thumbnail_url: img(postTag(undefined), `${slug}-${i}`, 540, 720), width: 1080, height: kind === "video" ? 1920 : 1440, duration_seconds: kind === "video" ? 15 : null, position: i })),
   products: prods.map((p, i) => ({ ...p, position: i })),
   stats: stats ?? { likes: 100 + (slug.length * 137) % 4000, comments: (slug.length * 13) % 90, saves: 40 + (slug.length * 59) % 900 },
   viewer: { liked: false, saved: false },

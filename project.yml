@@ -56,10 +56,13 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLName: com.timalpers.shopping
             CFBundleURLSchemes: [feed]
+          - CFBundleURLName: google-oauth
+            CFBundleURLSchemes: [$(GOOGLE_OAUTH_REVERSED_CLIENT_ID)]
         NSPhotoLibraryAddUsageDescription: "Save product images to your library."
         SUPABASE_URL: $(SUPABASE_URL)
         SUPABASE_ANON_KEY: $(SUPABASE_ANON_KEY)
         REDIRECT_BASE_URL: $(REDIRECT_BASE_URL)
+        GOOGLE_OAUTH_CLIENT_ID: $(GOOGLE_OAUTH_CLIENT_ID)
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.timalpers.shopping

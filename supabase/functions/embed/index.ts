@@ -54,6 +54,14 @@ Deno.serve(async (req) => {
     return json({ model: MODEL, embedding: await embed(body.text) });
   }
 
+  if (body.mode === "purchases" && typeof body.user_id === "string") {
+    const { data: rows, error: pe } = await admin.rpc("pending_purchase_embeddings", { p_user: body.user_id });
+    if (pe) return error(500, "pending_failed", pe.message);
+    const result = await processRows((rows ?? []) as Pending[]);
+    const { data: taste, error: te } = await admin.rpc("apply_purchase_taste", { p_user: body.user_id });
+    return json({ ok: !te, mode: "purchases", ...result, taste: te ? te.message : taste });
+  }
+
   const limit = Math.min(Number(body.limit ?? 100), 200);
   const { data, error: e } = await admin.rpc("pending_embeddings", { p_limit: body.table && body.id ? 500 : limit });
   if (e) return error(500, "pending_failed", e.message);

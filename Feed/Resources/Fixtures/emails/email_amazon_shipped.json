@@ -1,0 +1,10 @@
+{
+  "id": "fx-amazon-1",
+  "provider": "fixture",
+  "from_address": "ship-confirm@amazon.com",
+  "from_name": "Amazon.com",
+  "subject": "Your Amazon.com order of \"Levi's Men's 501 Original Fit Jeans, Medium Stonewash, 32W x 32L\" has shipped!",
+  "received_at": "2026-06-02T09:00:00Z",
+  "text": null,
+  "html": "<html><body><table><tr><td><img src=\"https://images-na.ssl-images-amazon.com/images/I/pixel.gif\" width=\"1\" height=\"1\"></td></tr><tr><td><img src=\"https://images-na.ssl-images-amazon.com/images/P/B0000ABCDE.jpg\" alt=\"Levi 501\"></td><td><a href=\"https://www.amazon.com/dp/B0000ABCDE\">Levi's Men's 501 Original Fit Jeans</a></td></tr><tr><td>Order Total: $59.50</td></tr></table></body></html>"
+}

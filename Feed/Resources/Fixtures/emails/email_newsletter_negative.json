@@ -1,0 +1,10 @@
+{
+  "id": "fx-news-1",
+  "provider": "fixture",
+  "from_address": "hello@everlane.com",
+  "from_name": "Everlane",
+  "subject": "25% off everything - this weekend only",
+  "received_at": "2026-08-01T10:00:00Z",
+  "html": "<html><body><p>Big sale. $35.00 tees now $26.25. Unsubscribe here.</p></body></html>",
+  "text": null
+}

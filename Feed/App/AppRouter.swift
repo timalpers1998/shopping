@@ -20,12 +20,14 @@ enum CoverRoute: Identifiable, Hashable {
     case productBrowser(URL)
     case compose
     case onboarding
+    case purchaseImport
 
     var id: String {
         switch self {
         case .productBrowser(let u): "browser-\(u.absoluteString)"
         case .compose: "compose"
         case .onboarding: "onboarding"
+        case .purchaseImport: "purchase-import"
         }
     }
 }
@@ -35,6 +37,7 @@ enum Route: Hashable {
     case post(postId: UUID)
     case pager(PostPagerPayload)
     case settings
+    case importedPurchases
 }
 
 @MainActor

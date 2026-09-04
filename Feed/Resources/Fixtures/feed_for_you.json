@@ -6,7 +6,7 @@
       "id": "c709fafa-6de5-4a48-afb2-b3542788fd8c",
       "kind": "carousel",
       "caption": "the perfect camel coat for fall 🍂 wearing it with my go-to loafers and straight jeans",
-      "created_at": "2026-09-03T18:54:22.832Z",
+      "created_at": "2026-09-03T21:01:46.038Z",
       "category": "fashion",
       "style_tags": [
         "old_money",
@@ -19,15 +19,15 @@
         "display_name": "Mia Chen",
         "kind": "creator",
         "is_verified": true,
-        "avatar_url": "https://picsum.photos/seed/mia/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=3",
         "is_following": false
       },
       "media": [
         {
           "id": "acf860ff-82f8-4b16-ae79-5968f79334d1",
           "type": "image",
-          "url": "https://picsum.photos/seed/camel-coat-fall-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/camel-coat-fall-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=5",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=5",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -36,8 +36,8 @@
         {
           "id": "770b8d48-8fd0-4f3b-a2ab-521670607263",
           "type": "image",
-          "url": "https://picsum.photos/seed/camel-coat-fall-1/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/camel-coat-fall-1/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=6",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=6",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -46,8 +46,8 @@
         {
           "id": "fcfa58e3-5e6d-4efc-a9d1-80cb6d07fea1",
           "type": "image",
-          "url": "https://picsum.photos/seed/camel-coat-fall-2/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/camel-coat-fall-2/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=7",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=7",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -63,7 +63,7 @@
           "price_cents": 129000,
           "currency": "USD",
           "url": "https://toteme-studio.com/products/signature-wool-cashmere-coat",
-          "image_url": "https://picsum.photos/seed/p-camel-coat/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=8",
           "position": 0
         },
         {
@@ -74,7 +74,7 @@
           "price_cents": 19500,
           "currency": "USD",
           "url": "https://www.coach.com/products/leather-loafer",
-          "image_url": "https://picsum.photos/seed/p-loafers/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=8",
           "position": 1
         },
         {
@@ -85,7 +85,7 @@
           "price_cents": 9800,
           "currency": "USD",
           "url": "https://www.levi.com/US/en_US/clothing/women/jeans/501-original-fit-womens-jeans/p/125010400",
-          "image_url": "https://picsum.photos/seed/p-jeans/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=7",
           "position": 2
         }
       ],
@@ -103,7 +103,7 @@
       "id": "865b46fc-8c63-4770-abe5-5598ec13f1d7",
       "kind": "image",
       "caption": "sunday fit. hoodie + cargos + the 1s, that's it that's the post",
-      "created_at": "2026-09-03T11:42:22.837Z",
+      "created_at": "2026-09-03T13:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "streetwear"
@@ -114,15 +114,15 @@
         "display_name": "Theo Alvarez",
         "kind": "creator",
         "is_verified": false,
-        "avatar_url": "https://picsum.photos/seed/theo/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=1",
         "is_following": false
       },
       "media": [
         {
           "id": "2f91e21b-e11a-436d-a024-4c4ad77a57bc",
           "type": "image",
-          "url": "https://picsum.photos/seed/street-fit-1-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/street-fit-1-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=8",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=8",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -138,7 +138,7 @@
           "price_cents": 13000,
           "currency": "USD",
           "url": "https://www.stussy.com/products/stock-logo-hood",
-          "image_url": "https://picsum.photos/seed/p-hoodie/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=9",
           "position": 0
         },
         {
@@ -149,7 +149,7 @@
           "price_cents": 14800,
           "currency": "USD",
           "url": "https://www.carhartt-wip.com/en/men-pants/jet-cargo-pant",
-          "image_url": "https://picsum.photos/seed/p-cargos/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=7",
           "position": 1
         },
         {
@@ -160,7 +160,7 @@
           "price_cents": 12500,
           "currency": "USD",
           "url": "https://www.nike.com/t/air-jordan-1-mid-shoes",
-          "image_url": "https://picsum.photos/seed/p-jordans/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=5",
           "position": 2
         }
       ],
@@ -178,7 +178,7 @@
       "id": "c4343c5d-edd9-4e05-aeed-cf86c74dd851",
       "kind": "image",
       "caption": "The Oversized Blazer, back in camel. Layer it over everything.",
-      "created_at": "2026-09-02T23:42:22.837Z",
+      "created_at": "2026-09-03T01:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "workwear",
@@ -197,8 +197,8 @@
         {
           "id": "f2d244f7-cc96-46ea-a094-8c786bb8c056",
           "type": "image",
-          "url": "https://picsum.photos/seed/aritzia-blazer-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/aritzia-blazer-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=3",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=3",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -214,7 +214,7 @@
           "price_cents": 22800,
           "currency": "USD",
           "url": "https://www.aritzia.com/us/en/product/oversized-wool-blazer/",
-          "image_url": "https://picsum.photos/seed/p-blazer/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=2",
           "position": 0
         },
         {
@@ -225,7 +225,7 @@
           "price_cents": 4800,
           "currency": "USD",
           "url": "https://www.aritzia.com/us/en/product/contour-tank/",
-          "image_url": "https://picsum.photos/seed/p-tank/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=3",
           "position": 1
         }
       ],
@@ -243,7 +243,7 @@
       "id": "079ab522-bf33-4816-aef4-d80f32389059",
       "kind": "video",
       "caption": "gym to brunch in the same set, no notes",
-      "created_at": "2026-09-02T11:42:22.837Z",
+      "created_at": "2026-09-02T13:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "athleisure"
@@ -254,7 +254,7 @@
         "display_name": "June Okafor",
         "kind": "creator",
         "is_verified": true,
-        "avatar_url": "https://picsum.photos/seed/june/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=9",
         "is_following": false
       },
       "media": [
@@ -262,7 +262,7 @@
           "id": "48218140-4882-408d-a481-80507f7aea7d",
           "type": "video",
           "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-          "thumbnail_url": "https://picsum.photos/seed/gym-to-brunch-0/540/720",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=3",
           "width": 1080,
           "height": 1920,
           "duration_seconds": 15,
@@ -278,7 +278,7 @@
           "price_cents": 9800,
           "currency": "USD",
           "url": "https://shop.lululemon.com/p/womens-leggings/Align-Pant-2",
-          "image_url": "https://picsum.photos/seed/p-leggings/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=2",
           "position": 0
         },
         {
@@ -289,7 +289,7 @@
           "price_cents": 11800,
           "currency": "USD",
           "url": "https://shop.lululemon.com/p/women-hoodies/Scuba-Oversized-Half-Zip",
-          "image_url": "https://picsum.photos/seed/p-zipup/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=7",
           "position": 1
         }
       ],
@@ -307,7 +307,7 @@
       "id": "26f311a0-de14-458c-adae-d30204f6e39c",
       "kind": "carousel",
       "caption": "New season basics. The box-cut tee and the drape pant, together at last.",
-      "created_at": "2026-09-01T23:42:22.837Z",
+      "created_at": "2026-09-02T01:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "minimalist"
@@ -325,8 +325,8 @@
         {
           "id": "c7624e7b-1b52-4d6e-afc5-bad045473807",
           "type": "image",
-          "url": "https://picsum.photos/seed/everlane-basics-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/everlane-basics-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=1",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=1",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -335,8 +335,8 @@
         {
           "id": "a666aa72-8f2b-4ede-a0e8-be3ee5ed20e2",
           "type": "image",
-          "url": "https://picsum.photos/seed/everlane-basics-1/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/everlane-basics-1/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=2",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=2",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -352,7 +352,7 @@
           "price_cents": 3500,
           "currency": "USD",
           "url": "https://www.everlane.com/products/womens-organic-cotton-box-cut-tee",
-          "image_url": "https://picsum.photos/seed/p-tee/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=2",
           "position": 0
         },
         {
@@ -363,7 +363,7 @@
           "price_cents": 11800,
           "currency": "USD",
           "url": "https://www.everlane.com/products/womens-way-high-drape-pant",
-          "image_url": "https://picsum.photos/seed/p-trousers/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=6",
           "position": 1
         }
       ],
@@ -381,7 +381,7 @@
       "id": "e290599d-e292-4c81-a135-bfd91c5ca84c",
       "kind": "carousel",
       "caption": "trail day. shell + fleece + XT-6s. the gorpcore starter pack honestly",
-      "created_at": "2026-09-01T11:42:22.837Z",
+      "created_at": "2026-09-01T13:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "gorpcore"
@@ -392,15 +392,15 @@
         "display_name": "Theo Alvarez",
         "kind": "creator",
         "is_verified": false,
-        "avatar_url": "https://picsum.photos/seed/theo/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=1",
         "is_following": false
       },
       "media": [
         {
           "id": "94fc2cf8-1a6a-4909-a43f-9eb31b6878e9",
           "type": "image",
-          "url": "https://picsum.photos/seed/gorp-hike-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/gorp-hike-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=6",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=6",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -409,8 +409,8 @@
         {
           "id": "ec666498-6737-42b8-aeec-668f435ea860",
           "type": "image",
-          "url": "https://picsum.photos/seed/gorp-hike-1/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/gorp-hike-1/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=7",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=7",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -419,8 +419,8 @@
         {
           "id": "f10dd97f-8f3b-4a15-ae21-d98b13dcf55e",
           "type": "image",
-          "url": "https://picsum.photos/seed/gorp-hike-2/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/gorp-hike-2/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=8",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=8",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -436,7 +436,7 @@
           "price_cents": 45000,
           "currency": "USD",
           "url": "https://arcteryx.com/us/en/shop/womens/beta-lt-jacket",
-          "image_url": "https://picsum.photos/seed/p-shell/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=5",
           "position": 0
         },
         {
@@ -447,7 +447,7 @@
           "price_cents": 20000,
           "currency": "USD",
           "url": "https://arcteryx.com/us/en/shop/mens/covert-cardigan",
-          "image_url": "https://picsum.photos/seed/p-fleece/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=1",
           "position": 1
         },
         {
@@ -458,7 +458,7 @@
           "price_cents": 20000,
           "currency": "USD",
           "url": "https://www.salomon.com/en-us/shop/product/xt-6.html",
-          "image_url": "https://picsum.photos/seed/p-trail/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=6",
           "position": 2
         }
       ],
@@ -476,7 +476,7 @@
       "id": "55a8c2c7-d362-4787-aa22-cc47bad34a52",
       "kind": "image",
       "caption": "picnic dress season is here 🌸",
-      "created_at": "2026-08-31T23:42:22.837Z",
+      "created_at": "2026-09-01T01:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "cottagecore",
@@ -488,15 +488,15 @@
         "display_name": "Mia Chen",
         "kind": "creator",
         "is_verified": true,
-        "avatar_url": "https://picsum.photos/seed/mia/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=3",
         "is_following": false
       },
       "media": [
         {
           "id": "d782821d-531b-4eda-ae96-7b9d5da8a6f4",
           "type": "image",
-          "url": "https://picsum.photos/seed/cottage-picnic-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/cottage-picnic-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=2",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=2",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -512,7 +512,7 @@
           "price_cents": 27800,
           "currency": "USD",
           "url": "https://www.thereformation.com/products/midi-dress",
-          "image_url": "https://picsum.photos/seed/p-midi/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=1",
           "position": 0
         }
       ],
@@ -530,7 +530,7 @@
       "id": "b897b7ba-1a4a-40be-ab38-b75123da85f1",
       "kind": "image",
       "caption": "cable knit + jeans, the uniform for cold mornings",
-      "created_at": "2026-08-31T11:42:22.837Z",
+      "created_at": "2026-08-31T13:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "preppy",
@@ -542,15 +542,15 @@
         "display_name": "June Okafor",
         "kind": "creator",
         "is_verified": true,
-        "avatar_url": "https://picsum.photos/seed/june/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=9",
         "is_following": false
       },
       "media": [
         {
           "id": "e7354ff5-bca7-4701-a61b-584b783d88ee",
           "type": "image",
-          "url": "https://picsum.photos/seed/preppy-cardigan-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/preppy-cardigan-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=4",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=4",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -566,7 +566,7 @@
           "price_cents": 12800,
           "currency": "USD",
           "url": "https://www.jcrew.com/p/womens/categories/clothing/sweaters/cardigans",
-          "image_url": "https://picsum.photos/seed/p-cardigan/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=5",
           "position": 0
         },
         {
@@ -577,7 +577,7 @@
           "price_cents": 9800,
           "currency": "USD",
           "url": "https://www.levi.com/US/en_US/clothing/women/jeans/501-original-fit-womens-jeans/p/125010400",
-          "image_url": "https://picsum.photos/seed/p-jeans/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=7",
           "position": 1
         }
       ],
@@ -595,7 +595,7 @@
       "id": "bd7d4b8b-a812-4e24-af16-3a35bf456160",
       "kind": "carousel",
       "caption": "going out y2k style. the baby tee is $32?? insane",
-      "created_at": "2026-08-30T23:42:22.837Z",
+      "created_at": "2026-08-31T01:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "y2k",
@@ -607,15 +607,15 @@
         "display_name": "Mia Chen",
         "kind": "creator",
         "is_verified": true,
-        "avatar_url": "https://picsum.photos/seed/mia/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=3",
         "is_following": false
       },
       "media": [
         {
           "id": "ee191892-0db2-4bb7-ada8-4e4ebcb3ddb3",
           "type": "image",
-          "url": "https://picsum.photos/seed/y2k-night-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/y2k-night-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=9",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=9",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -624,8 +624,8 @@
         {
           "id": "880c142c-7662-4ace-ac0c-7e9cc5f299e2",
           "type": "image",
-          "url": "https://picsum.photos/seed/y2k-night-1/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/y2k-night-1/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=1",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=1",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -641,7 +641,7 @@
           "price_cents": 3200,
           "currency": "USD",
           "url": "https://us.princesspolly.com/products/baby-tee",
-          "image_url": "https://picsum.photos/seed/p-babytee/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=6",
           "position": 0
         },
         {
@@ -652,7 +652,7 @@
           "price_cents": 5900,
           "currency": "USD",
           "url": "https://www.urbanoutfitters.com/shop/bdg-denim-mini-skirt",
-          "image_url": "https://picsum.photos/seed/p-mini/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=5",
           "position": 1
         }
       ],
@@ -670,7 +670,7 @@
       "id": "dbfc0be8-1075-4f2a-af09-e573402e7607",
       "kind": "video",
       "caption": "Beta LT. Lighter, packable, built for the wet season.",
-      "created_at": "2026-08-30T11:42:22.837Z",
+      "created_at": "2026-08-30T13:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "gorpcore"
@@ -689,7 +689,7 @@
           "id": "f7cc7f4f-fa34-496c-a3c8-bd3e8c942d07",
           "type": "video",
           "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-          "thumbnail_url": "https://picsum.photos/seed/arcteryx-beta-0/540/720",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=4",
           "width": 1080,
           "height": 1920,
           "duration_seconds": 15,
@@ -705,7 +705,7 @@
           "price_cents": 45000,
           "currency": "USD",
           "url": "https://arcteryx.com/us/en/shop/womens/beta-lt-jacket",
-          "image_url": "https://picsum.photos/seed/p-shell/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=5",
           "position": 0
         }
       ],
@@ -723,7 +723,7 @@
       "id": "fae07c05-135b-4016-ab4a-a0af7e26067f",
       "kind": "carousel",
       "caption": "linen set + raffia tote = the whole coastal weekend",
-      "created_at": "2026-08-29T23:42:22.837Z",
+      "created_at": "2026-08-30T01:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "coastal"
@@ -734,15 +734,15 @@
         "display_name": "June Okafor",
         "kind": "creator",
         "is_verified": true,
-        "avatar_url": "https://picsum.photos/seed/june/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=9",
         "is_following": false
       },
       "media": [
         {
           "id": "478a27d0-78d2-40c3-ae2b-00a4fbdafa23",
           "type": "image",
-          "url": "https://picsum.photos/seed/coastal-weekend-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/coastal-weekend-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=3",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=3",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -751,8 +751,8 @@
         {
           "id": "6685e412-c247-4c25-a7df-b8db8c8721b8",
           "type": "image",
-          "url": "https://picsum.photos/seed/coastal-weekend-1/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/coastal-weekend-1/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=4",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=4",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -768,7 +768,7 @@
           "price_cents": 14800,
           "currency": "USD",
           "url": "https://www.madewell.com/linen-set",
-          "image_url": "https://picsum.photos/seed/p-linen/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=6",
           "position": 0
         },
         {
@@ -779,7 +779,7 @@
           "price_cents": 9800,
           "currency": "USD",
           "url": "https://www.madewell.com/the-raffia-tote",
-          "image_url": "https://picsum.photos/seed/p-raffia/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=6",
           "position": 1
         }
       ],
@@ -797,7 +797,7 @@
       "id": "9cc5b55a-eb94-4e1a-a700-310571653544",
       "kind": "image",
       "caption": "cargo pants are undefeated",
-      "created_at": "2026-08-28T23:42:22.837Z",
+      "created_at": "2026-08-29T01:49:46.039Z",
       "category": "fashion",
       "style_tags": [
         "streetwear"
@@ -808,15 +808,15 @@
         "display_name": "Theo Alvarez",
         "kind": "creator",
         "is_verified": false,
-        "avatar_url": "https://picsum.photos/seed/theo/200/200",
+        "avatar_url": "https://loremflickr.com/200/200/model?lock=1",
         "is_following": false
       },
       "media": [
         {
           "id": "2c215a4b-7c61-49b9-a895-ec119b52c78e",
           "type": "image",
-          "url": "https://picsum.photos/seed/street-fit-2-0/1080/1440",
-          "thumbnail_url": "https://picsum.photos/seed/street-fit-2-0/540/720",
+          "url": "https://loremflickr.com/1080/1440/ootd?lock=6",
+          "thumbnail_url": "https://loremflickr.com/540/720/ootd?lock=6",
           "width": 1080,
           "height": 1440,
           "duration_seconds": null,
@@ -832,7 +832,7 @@
           "price_cents": 14800,
           "currency": "USD",
           "url": "https://www.carhartt-wip.com/en/men-pants/jet-cargo-pant",
-          "image_url": "https://picsum.photos/seed/p-cargos/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=7",
           "position": 0
         },
         {
@@ -843,7 +843,7 @@
           "price_cents": 12500,
           "currency": "USD",
           "url": "https://www.nike.com/t/air-jordan-1-mid-shoes",
-          "image_url": "https://picsum.photos/seed/p-jordans/600/800",
+          "image_url": "https://loremflickr.com/600/800/lookbook?lock=5",
           "position": 1
         }
       ],

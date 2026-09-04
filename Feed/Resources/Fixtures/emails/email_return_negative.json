@@ -1,0 +1,10 @@
+{
+  "id": "fx-return-1",
+  "provider": "fixture",
+  "from_address": "orders@aritzia.com",
+  "from_name": "Aritzia",
+  "subject": "Your return has been processed",
+  "received_at": "2026-05-30T10:00:00Z",
+  "html": null,
+  "text": "We have refunded $96.00 to your original payment method.\n"
+}

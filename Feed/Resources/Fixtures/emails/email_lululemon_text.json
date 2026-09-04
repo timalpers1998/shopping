@@ -1,0 +1,10 @@
+{
+  "id": "fx-lulu-1",
+  "provider": "fixture",
+  "from_address": "orders@lululemon.com",
+  "from_name": "lululemon",
+  "subject": "Your order is confirmed",
+  "received_at": "2026-04-03T18:30:00Z",
+  "html": null,
+  "text": "Hi Tim,\n\nThanks for shopping with us.\n\nAlign High-Rise Pant 25\"\nBlack / Size 6\nQty 1\n$98.00\n\nScuba Oversized Half-Zip\nHeathered Core Light Grey / M\nQty 1\n$118.00\n\nSubtotal: $216.00\nShipping: Free\nTax: $18.90\nTotal: $234.90\n\nOrder number: LL-3382\n"
+}

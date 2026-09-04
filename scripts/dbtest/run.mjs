@@ -143,6 +143,38 @@ async function main() {
   await sql(`insert into auth.users (id, is_anonymous, email) values ($1, false, 'real@example.com')`, [real]);
   const merged = (await sql(`select merge_anonymous_user($1, $2) f`, [uid, real])).rows[0].f;
   console.log("merged:", merged);
+
+  // Purchase-history import
+  await setUser(real, false);
+  const items = [
+    { fingerprint: "f1", merchant: "everlane.com", brand: "Everlane", title: "Organic cotton box-cut tee", price_cents: 3500, purchased_at: new Date(Date.now() - 30*86400e3).toISOString(), category: "fashion", extraction: "jsonld", confidence: 0.95, image_url: "https://x/1.jpg" },
+    { fingerprint: "f2", merchant: "everlane.com", brand: "Everlane", title: "The way-high drape pant", price_cents: 11800, purchased_at: new Date(Date.now() - 60*86400e3).toISOString(), category: "fashion", extraction: "jsonld", confidence: 0.95 },
+    { fingerprint: "f3", merchant: "everlane.com", brand: "Everlane", title: "Cashmere crewneck", price_cents: 13000, purchased_at: new Date(Date.now() - 200*86400e3).toISOString(), category: "fashion", extraction: "heuristic", confidence: 0.6 },
+    { fingerprint: "f4", merchant: "aritzia.com", brand: "Aritzia", title: "Oversized wool blazer", price_cents: 22800, purchased_at: new Date(Date.now() - 10*86400e3).toISOString(), category: "fashion", extraction: "heuristic", confidence: 0.7 },
+    { fingerprint: "f5", merchant: "aritzia.com", brand: "Aritzia", title: "Contour tank", price_cents: 4800, purchased_at: new Date(Date.now() - 12*86400e3).toISOString(), category: "fashion", extraction: "heuristic", confidence: 0.7 },
+    { fingerprint: "f6", merchant: "bestbuy.com", brand: null, title: "USB-C cable", price_cents: 1500, purchased_at: new Date(Date.now() - 5*86400e3).toISOString(), category: null, extraction: "heuristic", confidence: 0.5 },
+  ];
+  const applied = (await sql(`select apply_purchase_signals($1::jsonb) f`, [JSON.stringify({ provider: "fixture", account_label: "t•••@gmail.com", messages_scanned: 120, orders_found: 6, items })])).rows[0].f;
+  console.log("purchases applied:", applied.items, "price band:", applied.price_band, "followed:", applied.followed_author_ids.length);
+  const nowFollows = (await sql(`select count(*) n from follows f join authors a on a.id = f.author_id where f.user_id = $1 and a.handle in ('everlane','aritzia')`, [real])).rows[0].n;
+  console.log("follows everlane+aritzia after import:", nowFollows);
+  if (applied.items !== 6 || applied.price_band !== "mid" || Number(nowFollows) !== 2) throw new Error("apply_purchase_signals unexpected");
+  const pcalls = (await sql(`select body from net._calls where body->>'mode' = 'purchases'`)).rows.length;
+  console.log("embed webhook calls for purchases (0 until app_settings set):", pcalls);
+  const tBefore = (await sql(`select taste_vec::text v from user_taste where user_id = $1`, [real])).rows[0]?.v;
+  for (const r of (await sql(`select id, title from purchase_signals where user_id = $1`, [real])).rows)
+    await sql(`select set_embedding('purchase_signals', $1, 'x', $2::vector, 'fake')`, [r.id, vecFor(/tee|pant|crew|tank/.test(r.title) ? ["minimalist"] : ["workwear"])]);
+  const pt = (await sql(`select apply_purchase_taste($1) f`, [real])).rows[0].f;
+  const tAfter = (await sql(`select taste_vec::text v, purchase_vec is not null pv, signal_count from user_taste where user_id = $1`, [real])).rows[0];
+  const c2 = tBefore ? (await sql(`select 1 - ($1::vector <=> $2::vector) c`, [tBefore, tAfter.v])).rows[0].c : null;
+  console.log("purchase taste applied:", pt, "purchase_vec set:", tAfter.pv, "cos(before, after) =", c2 == null ? "n/a" : Number(c2).toFixed(3));
+  if (!pt.applied || pt.items !== 5) throw new Error("apply_purchase_taste should use the 5 categorized rows");
+  const imports = (await sql(`select get_purchase_imports() f`)).rows[0].f;
+  console.log("settings view: imports", imports.imports.length, "brands", imports.brands.map((b) => b.brand + ":" + b.items).join(","), "band", imports.price_band, imports.price_band_source);
+  const del = (await sql(`select delete_purchase_signals() f`)).rows[0].f;
+  const after = (await sql(`select (select count(*) from purchase_signals where user_id = $1) n, (select price_band from profiles where id = $1) band, (select purchase_vec is null from user_taste where user_id = $1) cleared`, [real])).rows[0];
+  console.log("deleted:", del.deleted, "remaining:", after.n, "band:", after.band, "purchase_vec cleared:", after.cleared);
+  if (Number(after.n) !== 0 || after.band !== null || !after.cleared) throw new Error("delete_purchase_signals incomplete");
   console.log("\nALL DB CHECKS PASSED");
 }
 main().catch((e) => { console.error("FAILED:", e.message); process.exit(1); });

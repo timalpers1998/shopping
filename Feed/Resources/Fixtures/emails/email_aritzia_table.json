@@ -1,0 +1,10 @@
+{
+  "id": "fx-aritzia-1",
+  "provider": "fixture",
+  "from_address": "noreply@aritzia.com",
+  "from_name": "Aritzia",
+  "subject": "Thanks for your order! #AR-55210",
+  "received_at": "2026-05-14T20:15:00Z",
+  "text": null,
+  "html": "<html><body><h1>Order confirmation</h1><table><tr><td><img src=\"https://loremflickr.com/600/800/blazer?lock=5\" width=\"120\"></td><td>The Oversized Wool Blazer<br>Colour: Camel \u00b7 Size: S<br>Qty: 1</td><td>$228.00</td></tr><tr><td><img src=\"https://loremflickr.com/600/800/tshirt?lock=6\" width=\"120\"></td><td>Contour Tank<br>Colour: Black \u00b7 Size: XS<br>Qty: 2</td><td>$96.00</td></tr></table><p>Subtotal $324.00</p><p>Shipping $0.00</p><p>Tax $28.35</p><p>Order Total $352.35</p><p><a href=\"https://www.aritzia.com/us/en/product/oversized-wool-blazer/1.html\">View item</a> <a href=\"https://www.aritzia.com/us/en/product/contour-tank/2.html\">View item</a></p></body></html>"
+}

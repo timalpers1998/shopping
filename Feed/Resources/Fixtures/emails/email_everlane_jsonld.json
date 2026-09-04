@@ -1,0 +1,10 @@
+{
+  "id": "fx-everlane-1",
+  "provider": "fixture",
+  "from_address": "orders@everlane.com",
+  "from_name": "Everlane",
+  "subject": "Order #E1042 confirmed",
+  "received_at": "2026-08-12T17:20:00Z",
+  "text": null,
+  "html": "<html><head><script type=\"application/ld+json\">{\"@context\":\"http://schema.org\",\"@type\":\"Order\",\"merchant\":{\"@type\":\"Organization\",\"name\":\"Everlane\"},\"orderNumber\":\"E1042\",\"orderDate\":\"2026-08-12T17:19:00Z\",\"priceCurrency\":\"USD\",\"price\":\"153.00\",\"acceptedOffer\":[{\"@type\":\"Offer\",\"price\":\"35.00\",\"priceCurrency\":\"USD\",\"eligibleQuantity\":{\"@type\":\"QuantitativeValue\",\"value\":1},\"itemOffered\":{\"@type\":\"Product\",\"name\":\"The Organic Cotton Box-Cut Tee\",\"image\":\"https://loremflickr.com/600/800/tshirt?lock=2\",\"url\":\"https://www.everlane.com/products/womens-organic-cotton-box-cut-tee\",\"brand\":{\"@type\":\"Brand\",\"name\":\"Everlane\"}}},{\"@type\":\"Offer\",\"price\":\"118.00\",\"priceCurrency\":\"USD\",\"itemOffered\":{\"@type\":\"Product\",\"name\":\"The Way-High Drape Pant\",\"image\":\"https://loremflickr.com/600/800/jeans?lock=4\",\"url\":\"https://www.everlane.com/products/womens-way-high-drape-pant\"}}]}</script></head><body><p>Thanks for your order, Tim!</p><table><tr><td>The Organic Cotton Box-Cut Tee</td><td>$35.00</td></tr><tr><td>The Way-High Drape Pant</td><td>$118.00</td></tr><tr><td>Subtotal</td><td>$153.00</td></tr><tr><td>Shipping</td><td>$0.00</td></tr><tr><td>Total</td><td>$153.00</td></tr></table></body></html>"
+}

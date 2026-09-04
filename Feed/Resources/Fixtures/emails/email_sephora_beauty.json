@@ -1,0 +1,10 @@
+{
+  "id": "fx-sephora-1",
+  "provider": "fixture",
+  "from_address": "sephora@email.sephora.com",
+  "from_name": "Sephora",
+  "subject": "Your Sephora order confirmation",
+  "received_at": "2026-03-11T10:00:00Z",
+  "html": null,
+  "text": "Order # 1189\n\nRare Beauty Soft Pinch Liquid Blush\n$23.00\n\nGlossier Boy Brow\n$18.00\n\nSubtotal $41.00\nTotal $44.28\n"
+}

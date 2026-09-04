@@ -1,0 +1,10 @@
+{
+  "id": "fx-jcrew-1",
+  "provider": "fixture",
+  "from_address": "jcrew@e.jcrew.com",
+  "from_name": "J.Crew",
+  "subject": "We received your order",
+  "received_at": "2026-02-20T14:00:00Z",
+  "text": null,
+  "html": "<html><body><div>Cable-Knit Cardigan Sweater</div><div>Heather Oat \u00b7 M</div><div>$128.00</div><div>Slim-Fit Chino Pant</div><div>Khaki \u00b7 32x32</div><div>$89.50</div><div>Subtotal $217.50</div><div>Total $235.20</div></body></html>"
+}

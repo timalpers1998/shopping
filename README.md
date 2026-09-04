@@ -13,6 +13,9 @@ A never-ending, hyper-personalized vertical feed of shoppable posts from creator
 4. Backend (hosted Supabase): run `npx supabase login` once, then `scripts/deploy.sh <project-ref> --seed`. The script links, pushes migrations + dev seed, deploys edge functions, writes `Feed/Config/Secrets.xcconfig`, and runs the embedding sweep.
 5. In the Supabase dashboard: Authentication → Providers → enable **Anonymous sign-ins** and Email (OTP). Add `feed://auth/callback` to redirect URLs.
 
+## Purchase-history import (Gmail)
+Order emails are read and parsed on the phone; only brand, product, price, date and photo reach the backend. To enable the Gmail button, create an OAuth client of type **iOS** in Google Cloud (APIs & Services → Credentials, bundle id `com.timalpers.shopping`, enable the Gmail API) and put the client id in `Feed/Config/Secrets.xcconfig` as `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_REVERSED_CLIENT_ID`. In "Testing" publishing status up to 100 listed test users can connect; public launch needs Google's OAuth verification for the `gmail.readonly` scope. Fixtures mode uses the sample inbox in `Feed/Resources/Fixtures/emails/`.
+
 ## Tests
 - Unit: `xcodebuild test -scheme Feed -only-testing:FeedTests ...`
 - UI (fixtures, no backend): `-only-testing:FeedUITests` covers feed paging, carousel, click-out, like, comments, profile, pager, settings, composer (seeded draft), onboarding quiz. Screenshots land in `/tmp/*.png`.
@@ -29,3 +32,4 @@ A never-ending, hyper-personalized vertical feed of shoppable posts from creator
 - [x] M5 Video (player pool, autoplay muted, loop, tap to unmute)
 - [x] M6 Comments (sheet, optimistic insert, delete own)
 - [~] M7 Onboarding quiz done; redirect + ingest functions written, awaiting hosted deploy
+- [x] M8 Purchase-history import (on-device Gmail scan, parser, review grid, taste blend, Settings delete)
