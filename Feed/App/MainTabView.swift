@@ -71,9 +71,13 @@ struct MainTabView: View {
             case .productBrowser(let url): ProductBrowserView(url: url).ignoresSafeArea()
             case .compose: ComposeFlowView { post in feedModel?.insertNewPost(post) }
             case .onboarding:
-                ConversationalOnboardingView {
+                OnboardingFlowView { submitted in
                     router.cover = nil
-                    Task { await env.refreshMe(); await feedModel?.store.refresh(); if let st = feedModel?.store { feedModel?.activePostChanged(in: st) } }
+                    if submitted, !ProcessInfo.processInfo.arguments.contains("-skip-purchase-import"), !env.mailProviders.filter(\.isAvailable).isEmpty {
+                        Task { try? await Task.sleep(for: .milliseconds(350)); router.present(.purchaseImport) }
+                    } else {
+                        Task { await feedModel?.store.refresh(); if let s = feedModel?.store { feedModel?.activePostChanged(in: s) } }
+                    }
                 }
             case .purchaseImport:
                 PurchaseImportFlowView { _ in

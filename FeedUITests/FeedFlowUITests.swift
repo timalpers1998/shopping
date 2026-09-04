@@ -171,83 +171,75 @@ final class ComposeUITests: XCTestCase {
 
 
 final class OnboardingUITests: XCTestCase {
-    func testConversationSkipsInbox() {
+    func testQuizFlow() {
         let app = XCUIApplication()
-        app.launchArguments += ["-ui-testing", "-use-fixtures", "-force-onboarding"]
+        app.launchArguments += ["-ui-testing", "-use-fixtures", "-force-onboarding", "-skip-purchase-import"]
         app.launch()
-        let name = app.textFields["onboarding-name"].firstMatch
-        XCTAssertTrue(name.waitForExistence(timeout: 10), "conversation should ask for a name")
-        name.tap()
-        if !app.keyboards.firstMatch.waitForExistence(timeout: 3) { name.tap() }
-        name.typeText("Tim")
-        app.buttons["onboarding-name-send"].firstMatch.tap()
-        XCTAssertTrue(app.buttons["audience-womens"].waitForExistence(timeout: 8))
-        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/onb-1.png"))
+        XCTAssertTrue(app.buttons["audience-womens"].waitForExistence(timeout: 10))
         app.buttons["audience-womens"].tap()
-        XCTAssertTrue(app.buttons["band-premium"].waitForExistence(timeout: 8))
         app.buttons["band-premium"].tap()
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/quiz-1.png"))
+        app.buttons["quiz-continue"].tap()
         XCTAssertTrue(app.buttons["style-minimalist"].waitForExistence(timeout: 8))
-        XCTAssertFalse(app.buttons["quiz-continue"].exists, "continue only appears once 3 styles are picked")
-        app.buttons["style-minimalist"].tap(); app.buttons["style-old_money"].tap(); app.buttons["style-scandi"].tap()
-        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/onb-2.png"))
-        let cont = app.buttons["quiz-continue"].firstMatch
-        XCTAssertTrue(cont.waitForExistence(timeout: 3)); cont.tap()
+        let cont = app.buttons["quiz-continue"]
+        XCTAssertFalse(cont.isEnabled, "needs 3 styles")
+        app.buttons["style-minimalist"].tap()
+        app.buttons["style-old_money"].tap()
+        app.buttons["style-scandi"].tap()
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/quiz-2.png"))
+        XCTAssertTrue(cont.isEnabled)
+        cont.tap()
         XCTAssertTrue(app.buttons["brand-Toteme"].waitForExistence(timeout: 8))
         app.buttons["brand-Toteme"].tap()
-        app.buttons["brands-continue"].firstMatch.tap()
-        let skip = app.buttons["import-skip"].firstMatch
-        XCTAssertTrue(skip.waitForExistence(timeout: 10), "inbox step should follow the brands")
-        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/onb-3.png"))
-        skip.tap()
-        let finish = app.buttons["onboarding-finish"].firstMatch
-        XCTAssertTrue(finish.waitForExistence(timeout: 10), "taste card + finish should appear")
-        XCTAssertTrue(app.otherElements["taste-profile-card"].firstMatch.exists || app.staticTexts["Tim's taste"].exists)
-        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/onb-4.png"))
-        finish.tap()
-        XCTAssertTrue(app.staticTexts["mia.styles"].firstMatch.waitForExistence(timeout: 10), "feed shows after onboarding")
+        app.buttons["brand-COS"].tap()
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/quiz-3.png"))
+        cont.tap()
+        XCTAssertTrue(app.staticTexts["mia.styles"].firstMatch.waitForExistence(timeout: 10), "feed shows after the quiz")
     }
 }
 
+
 final class PurchaseImportUITests: XCTestCase {
-    func testConversationImportsInboxAndSettingsDelete() {
+    func testQuizHandsOffToImportAndApplies() {
         let app = XCUIApplication()
         app.launchArguments += ["-ui-testing", "-use-fixtures", "-force-onboarding"]
         app.launch()
-        let name = app.textFields["onboarding-name"].firstMatch
-        XCTAssertTrue(name.waitForExistence(timeout: 10))
-        name.tap()
-        if !app.keyboards.firstMatch.waitForExistence(timeout: 3) { name.tap() }
-        name.typeText("Tim"); app.buttons["onboarding-name-send"].firstMatch.tap()
-        XCTAssertTrue(app.buttons["audience-womens"].waitForExistence(timeout: 8)); app.buttons["audience-womens"].tap()
-        XCTAssertTrue(app.buttons["band-mid"].waitForExistence(timeout: 8)); app.buttons["band-mid"].tap()
+        XCTAssertTrue(app.buttons["audience-womens"].waitForExistence(timeout: 10))
+        app.buttons["quiz-continue"].tap()
         XCTAssertTrue(app.buttons["style-minimalist"].waitForExistence(timeout: 8))
         app.buttons["style-minimalist"].tap(); app.buttons["style-old_money"].tap(); app.buttons["style-scandi"].tap()
-        let cont = app.buttons["quiz-continue"].firstMatch; XCTAssertTrue(cont.waitForExistence(timeout: 3)); cont.tap()
-        XCTAssertTrue(app.buttons["brands-continue"].waitForExistence(timeout: 8)); app.buttons["brands-continue"].firstMatch.tap()
+        app.buttons["quiz-continue"].tap()
+        XCTAssertTrue(app.buttons["brand-Toteme"].waitForExistence(timeout: 8))
+        app.buttons["quiz-continue"].tap()
+        // Import intro appears after the quiz
         let connect = app.buttons["import-connect-fixture"].firstMatch
-        XCTAssertTrue(connect.waitForExistence(timeout: 10)); connect.tap()
+        XCTAssertTrue(connect.waitForExistence(timeout: 10), "import flow should follow the quiz")
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/import-intro.png"))
+        connect.tap()
         let apply = app.buttons["import-apply"].firstMatch
-        XCTAssertTrue(apply.waitForExistence(timeout: 40), "review card should appear inline after scanning")
+        XCTAssertTrue(apply.waitForExistence(timeout: 30), "review grid should appear after scanning")
         XCTAssertTrue(app.switches["import-brand-Everlane"].firstMatch.exists)
-        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/onb-review.png"))
-        app.switches["import-brand-Aritzia"].firstMatch.tap()
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/import-review.png"))
+        app.switches["import-brand-Aritzia"].firstMatch.tap()  // exclude one brand
         apply.tap()
-        let finish = app.buttons["onboarding-finish"].firstMatch
-        XCTAssertTrue(finish.waitForExistence(timeout: 15))
-        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/onb-profile.png"))
-        finish.tap()
-        XCTAssertTrue(app.staticTexts["mia.styles"].firstMatch.waitForExistence(timeout: 15))
+        sleep(3)
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/import-after-apply.png"))
+        XCTAssertTrue(app.staticTexts["mia.styles"].firstMatch.waitForExistence(timeout: 15), "feed shows after import")
+        // Settings shows the import and can delete it
         app.tabBars.buttons["Profile"].tap()
         let settings = app.buttons["profile-settings"].firstMatch
         XCTAssertTrue(settings.waitForExistence(timeout: 5)); settings.tap()
         let row = app.buttons["settings-imported-purchases"].firstMatch.exists ? app.buttons["settings-imported-purchases"].firstMatch : app.staticTexts["Imported purchases"].firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 5)); row.tap()
         let del = app.buttons["import-delete"].firstMatch
-        XCTAssertTrue(del.waitForExistence(timeout: 8)); del.tap()
+        XCTAssertTrue(del.waitForExistence(timeout: 8))
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/import-settings.png"))
+        del.tap()
         app.buttons["Delete"].firstMatch.tap()
         XCTAssertTrue(app.staticTexts["Not connected"].waitForExistence(timeout: 8))
     }
 }
+
 
 final class DiscoverUITests: XCTestCase {
     func testTrendingAndSearch() {
