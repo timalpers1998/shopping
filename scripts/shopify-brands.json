@@ -21,16 +21,6 @@
     ]
   },
   {
-    "name": "Glossier",
-    "handle": "glossier",
-    "domain": "www.glossier.com",
-    "category": "beauty",
-    "audience": "womens",
-    "style_tags": [
-      "model_off_duty"
-    ]
-  },
-  {
     "name": "Aimé Leon Dore",
     "handle": "aimeleondore",
     "domain": "www.aimeleondore.com",
@@ -70,36 +60,6 @@
     "audience": "unisex",
     "style_tags": [
       "athleisure"
-    ]
-  },
-  {
-    "name": "Parachute",
-    "handle": "parachute",
-    "domain": "www.parachutehome.com",
-    "category": "home",
-    "audience": "unisex",
-    "style_tags": [
-      "minimalist"
-    ]
-  },
-  {
-    "name": "Brooklinen",
-    "handle": "brooklinen",
-    "domain": "www.brooklinen.com",
-    "category": "home",
-    "audience": "unisex",
-    "style_tags": [
-      "minimalist"
-    ]
-  },
-  {
-    "name": "Rhode",
-    "handle": "rhode",
-    "domain": "www.rhodeskin.com",
-    "category": "beauty",
-    "audience": "womens",
-    "style_tags": [
-      "model_off_duty"
     ]
   }
 ]

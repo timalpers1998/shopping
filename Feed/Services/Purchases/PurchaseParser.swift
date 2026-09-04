@@ -109,11 +109,10 @@ enum PurchaseParser {
         return MerchantCatalog.shared.brandNames.first { lower.hasPrefix($0.lowercased()) || lower.contains(" " + $0.lowercased() + " ") }
     }
 
+    /// Fashion-only for now: anything else returns nil and is excluded from the taste blend.
     static func categoryFromTitle(_ title: String) -> String? {
         let t = title.lowercased()
         if t.range(of: #"\b(dress|jean|denim|coat|jacket|sneaker|shoe|boot|loafer|tee|t-shirt|shirt|blouse|sweater|cardigan|hoodie|pant|trouser|skirt|legging|bra|sock|hat|cap|bag|tote|belt|scarf|blazer|suit|short|jumper|parka|puffer|fleece|sandal|heel|flat|romper|jumpsuit|top|tank|polo|chino|cashmere|linen|wool)s?\b"#, options: .regularExpression) != nil { return "fashion" }
-        if t.range(of: #"\b(serum|lipstick|mascara|foundation|moisturizer|cleanser|shampoo|conditioner|perfume|fragrance|sunscreen|blush|eyeliner|palette|skincare|toner)s?\b"#, options: .regularExpression) != nil { return "beauty" }
-        if t.range(of: #"\b(sofa|lamp|duvet|sheet|pillow|rug|candle|vase|mug|table|chair|planter|blanket|towel|frame|shelf)s?\b"#, options: .regularExpression) != nil { return "home" }
         return nil
     }
 

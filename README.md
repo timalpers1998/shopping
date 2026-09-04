@@ -1,6 +1,8 @@
 # Feed — a personalized shopping feed for iPhone
 
-A never-ending, hyper-personalized vertical feed of shoppable posts from creators and brands. Tap a product to buy on the merchant's site. No in-app checkout.
+A never-ending, hyper-personalized **fashion** feed: creators post their fits, every piece is tappable, you buy on the merchant's site. No in-app checkout.
+
+Scope is deliberately narrow for now: fashion only. Home and beauty exist in the schema but their content is hidden and the chips are gone (see `supabase/migrations/20260903000021_fashion_only.sql`, which is reversible).
 
 ## Stack
 - iOS: SwiftUI, iOS 17+, XcodeGen, supabase-swift, Nuke

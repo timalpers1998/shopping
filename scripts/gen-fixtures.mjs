@@ -75,11 +75,9 @@ const forYou = [
   post("coastal-weekend", A.june, "carousel", "linen set + raffia tote = the whole coastal weekend", ["coastal"], [Q.linenSet, Q.raffia], 5, 2),
   post("street-fit-2", A.theo, "image", "cargo pants are undefeated", ["streetwear"], [Q.cargos, Q.jordans], 6),
 ];
-const fashion = forYou.slice().reverse();
 const following = [forYou[0], forYou[4], forYou[6]];
 
 mkdirSync("Feed/Resources/Fixtures", { recursive: true });
 const write = (name, items) => writeFileSync(`Feed/Resources/Fixtures/${name}.json`, JSON.stringify({ request_id: name, next_cursor: null, items }, null, 2));
-write("feed_for_you", forYou); write("feed_fashion", fashion); write("feed_following", following);
-write("feed_home", []); write("feed_beauty", []);
+write("feed_for_you", forYou); write("feed_following", following);
 console.log("fixtures written:", forYou.length, "for_you posts");

@@ -158,10 +158,6 @@ private struct EditStep: View {
                     }
                 }
 
-                Picker("Category", selection: $model.draft.category) {
-                    Text("Fashion").tag("fashion"); Text("Home").tag("home"); Text("Beauty").tag("beauty")
-                }
-                .pickerStyle(.segmented)
                 Picker("For", selection: $model.draft.audience) {
                     Text("Everyone").tag("unisex"); Text("Women's").tag("womens"); Text("Men's").tag("mens")
                 }

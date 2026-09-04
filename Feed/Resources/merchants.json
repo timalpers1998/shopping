@@ -1,67 +1,344 @@
 [
-  {"domain":"everlane.com","brand":"Everlane","category":"fashion"},
-  {"domain":"aritzia.com","brand":"Aritzia","category":"fashion"},
-  {"domain":"arcteryx.com","brand":"Arc'teryx","category":"fashion"},
-  {"domain":"nordstrom.com","brand":"Nordstrom","category":"fashion","marketplace":true},
-  {"domain":"amazon.com","brand":"Amazon","category":null,"marketplace":true},
-  {"domain":"lululemon.com","brand":"Lululemon","category":"fashion"},
-  {"domain":"aloyoga.com","brand":"Alo Yoga","category":"fashion"},
-  {"domain":"nike.com","brand":"Nike","category":"fashion"},
-  {"domain":"adidas.com","brand":"adidas","category":"fashion"},
-  {"domain":"levi.com","brand":"Levi's","category":"fashion"},
-  {"domain":"madewell.com","brand":"Madewell","category":"fashion"},
-  {"domain":"jcrew.com","brand":"J.Crew","category":"fashion"},
-  {"domain":"gap.com","brand":"Gap","category":"fashion"},
-  {"domain":"oldnavy.com","brand":"Old Navy","category":"fashion"},
-  {"domain":"hm.com","brand":"H&M","category":"fashion"},
-  {"domain":"zara.com","brand":"Zara","category":"fashion"},
-  {"domain":"uniqlo.com","brand":"Uniqlo","category":"fashion"},
-  {"domain":"cos.com","brand":"COS","category":"fashion"},
-  {"domain":"thereformation.com","brand":"Reformation","category":"fashion"},
-  {"domain":"freepeople.com","brand":"Free People","category":"fashion"},
-  {"domain":"anthropologie.com","brand":"Anthropologie","category":"fashion"},
-  {"domain":"urbanoutfitters.com","brand":"Urban Outfitters","category":"fashion"},
-  {"domain":"abercrombie.com","brand":"Abercrombie & Fitch","category":"fashion"},
-  {"domain":"ae.com","brand":"American Eagle","category":"fashion"},
-  {"domain":"princesspolly.com","brand":"Princess Polly","category":"fashion"},
-  {"domain":"ralphlauren.com","brand":"Ralph Lauren","category":"fashion"},
-  {"domain":"coach.com","brand":"Coach","category":"fashion"},
-  {"domain":"toteme-studio.com","brand":"Toteme","category":"fashion"},
-  {"domain":"ganni.com","brand":"Ganni","category":"fashion"},
-  {"domain":"ssense.com","brand":"SSENSE","category":"fashion","marketplace":true},
-  {"domain":"farfetch.com","brand":"Farfetch","category":"fashion","marketplace":true},
-  {"domain":"net-a-porter.com","brand":"NET-A-PORTER","category":"fashion","marketplace":true},
-  {"domain":"mytheresa.com","brand":"Mytheresa","category":"fashion","marketplace":true},
-  {"domain":"revolve.com","brand":"Revolve","category":"fashion","marketplace":true},
-  {"domain":"shopbop.com","brand":"Shopbop","category":"fashion","marketplace":true},
-  {"domain":"zappos.com","brand":"Zappos","category":"fashion","marketplace":true},
-  {"domain":"asos.com","brand":"ASOS","category":"fashion","marketplace":true},
-  {"domain":"shein.com","brand":"SHEIN","category":"fashion"},
-  {"domain":"stussy.com","brand":"Stüssy","category":"fashion"},
-  {"domain":"carhartt-wip.com","brand":"Carhartt WIP","category":"fashion"},
-  {"domain":"salomon.com","brand":"Salomon","category":"fashion"},
-  {"domain":"patagonia.com","brand":"Patagonia","category":"fashion"},
-  {"domain":"drmartens.com","brand":"Dr. Martens","category":"fashion"},
-  {"domain":"allsaints.com","brand":"AllSaints","category":"fashion"},
-  {"domain":"gucci.com","brand":"Gucci","category":"fashion"},
-  {"domain":"prada.com","brand":"Prada","category":"fashion"},
-  {"domain":"miumiu.com","brand":"Miu Miu","category":"fashion"},
-  {"domain":"therow.com","brand":"The Row","category":"fashion"},
-  {"domain":"loewe.com","brand":"Loewe","category":"fashion"},
-  {"domain":"ysl.com","brand":"Saint Laurent","category":"fashion"},
-  {"domain":"sephora.com","brand":"Sephora","category":"beauty","marketplace":true},
-  {"domain":"ulta.com","brand":"Ulta","category":"beauty","marketplace":true},
-  {"domain":"glossier.com","brand":"Glossier","category":"beauty"},
-  {"domain":"rarebeauty.com","brand":"Rare Beauty","category":"beauty"},
-  {"domain":"westelm.com","brand":"West Elm","category":"home"},
-  {"domain":"cb2.com","brand":"CB2","category":"home"},
-  {"domain":"crateandbarrel.com","brand":"Crate & Barrel","category":"home"},
-  {"domain":"potterybarn.com","brand":"Pottery Barn","category":"home"},
-  {"domain":"parachutehome.com","brand":"Parachute","category":"home"},
-  {"domain":"brooklinen.com","brand":"Brooklinen","category":"home"},
-  {"domain":"target.com","brand":"Target","category":null,"marketplace":true},
-  {"domain":"walmart.com","brand":"Walmart","category":null,"marketplace":true},
-  {"domain":"bestbuy.com","brand":"Best Buy","category":null,"marketplace":true},
-  {"domain":"etsy.com","brand":"Etsy","category":null,"marketplace":true},
-  {"domain":"shopify.com","brand":null,"category":null,"marketplace":true}
+  {
+    "domain": "everlane.com",
+    "brand": "Everlane",
+    "category": "fashion"
+  },
+  {
+    "domain": "aritzia.com",
+    "brand": "Aritzia",
+    "category": "fashion"
+  },
+  {
+    "domain": "arcteryx.com",
+    "brand": "Arc'teryx",
+    "category": "fashion"
+  },
+  {
+    "domain": "nordstrom.com",
+    "brand": "Nordstrom",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "amazon.com",
+    "brand": "Amazon",
+    "category": null,
+    "marketplace": true
+  },
+  {
+    "domain": "lululemon.com",
+    "brand": "Lululemon",
+    "category": "fashion"
+  },
+  {
+    "domain": "aloyoga.com",
+    "brand": "Alo Yoga",
+    "category": "fashion"
+  },
+  {
+    "domain": "nike.com",
+    "brand": "Nike",
+    "category": "fashion"
+  },
+  {
+    "domain": "adidas.com",
+    "brand": "adidas",
+    "category": "fashion"
+  },
+  {
+    "domain": "levi.com",
+    "brand": "Levi's",
+    "category": "fashion"
+  },
+  {
+    "domain": "madewell.com",
+    "brand": "Madewell",
+    "category": "fashion"
+  },
+  {
+    "domain": "jcrew.com",
+    "brand": "J.Crew",
+    "category": "fashion"
+  },
+  {
+    "domain": "gap.com",
+    "brand": "Gap",
+    "category": "fashion"
+  },
+  {
+    "domain": "oldnavy.com",
+    "brand": "Old Navy",
+    "category": "fashion"
+  },
+  {
+    "domain": "hm.com",
+    "brand": "H&M",
+    "category": "fashion"
+  },
+  {
+    "domain": "zara.com",
+    "brand": "Zara",
+    "category": "fashion"
+  },
+  {
+    "domain": "uniqlo.com",
+    "brand": "Uniqlo",
+    "category": "fashion"
+  },
+  {
+    "domain": "cos.com",
+    "brand": "COS",
+    "category": "fashion"
+  },
+  {
+    "domain": "thereformation.com",
+    "brand": "Reformation",
+    "category": "fashion"
+  },
+  {
+    "domain": "freepeople.com",
+    "brand": "Free People",
+    "category": "fashion"
+  },
+  {
+    "domain": "anthropologie.com",
+    "brand": "Anthropologie",
+    "category": "fashion"
+  },
+  {
+    "domain": "urbanoutfitters.com",
+    "brand": "Urban Outfitters",
+    "category": "fashion"
+  },
+  {
+    "domain": "abercrombie.com",
+    "brand": "Abercrombie & Fitch",
+    "category": "fashion"
+  },
+  {
+    "domain": "ae.com",
+    "brand": "American Eagle",
+    "category": "fashion"
+  },
+  {
+    "domain": "princesspolly.com",
+    "brand": "Princess Polly",
+    "category": "fashion"
+  },
+  {
+    "domain": "ralphlauren.com",
+    "brand": "Ralph Lauren",
+    "category": "fashion"
+  },
+  {
+    "domain": "coach.com",
+    "brand": "Coach",
+    "category": "fashion"
+  },
+  {
+    "domain": "toteme-studio.com",
+    "brand": "Toteme",
+    "category": "fashion"
+  },
+  {
+    "domain": "ganni.com",
+    "brand": "Ganni",
+    "category": "fashion"
+  },
+  {
+    "domain": "ssense.com",
+    "brand": "SSENSE",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "farfetch.com",
+    "brand": "Farfetch",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "net-a-porter.com",
+    "brand": "NET-A-PORTER",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "mytheresa.com",
+    "brand": "Mytheresa",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "revolve.com",
+    "brand": "Revolve",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "shopbop.com",
+    "brand": "Shopbop",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "zappos.com",
+    "brand": "Zappos",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "asos.com",
+    "brand": "ASOS",
+    "category": "fashion",
+    "marketplace": true
+  },
+  {
+    "domain": "shein.com",
+    "brand": "SHEIN",
+    "category": "fashion"
+  },
+  {
+    "domain": "stussy.com",
+    "brand": "Stüssy",
+    "category": "fashion"
+  },
+  {
+    "domain": "carhartt-wip.com",
+    "brand": "Carhartt WIP",
+    "category": "fashion"
+  },
+  {
+    "domain": "salomon.com",
+    "brand": "Salomon",
+    "category": "fashion"
+  },
+  {
+    "domain": "patagonia.com",
+    "brand": "Patagonia",
+    "category": "fashion"
+  },
+  {
+    "domain": "drmartens.com",
+    "brand": "Dr. Martens",
+    "category": "fashion"
+  },
+  {
+    "domain": "allsaints.com",
+    "brand": "AllSaints",
+    "category": "fashion"
+  },
+  {
+    "domain": "gucci.com",
+    "brand": "Gucci",
+    "category": "fashion"
+  },
+  {
+    "domain": "prada.com",
+    "brand": "Prada",
+    "category": "fashion"
+  },
+  {
+    "domain": "miumiu.com",
+    "brand": "Miu Miu",
+    "category": "fashion"
+  },
+  {
+    "domain": "therow.com",
+    "brand": "The Row",
+    "category": "fashion"
+  },
+  {
+    "domain": "loewe.com",
+    "brand": "Loewe",
+    "category": "fashion"
+  },
+  {
+    "domain": "ysl.com",
+    "brand": "Saint Laurent",
+    "category": "fashion"
+  },
+  {
+    "domain": "sephora.com",
+    "brand": "Sephora",
+    "category": null,
+    "marketplace": true
+  },
+  {
+    "domain": "ulta.com",
+    "brand": "Ulta",
+    "category": null,
+    "marketplace": true
+  },
+  {
+    "domain": "glossier.com",
+    "brand": "Glossier",
+    "category": null
+  },
+  {
+    "domain": "rarebeauty.com",
+    "brand": "Rare Beauty",
+    "category": null
+  },
+  {
+    "domain": "westelm.com",
+    "brand": "West Elm",
+    "category": null
+  },
+  {
+    "domain": "cb2.com",
+    "brand": "CB2",
+    "category": null
+  },
+  {
+    "domain": "crateandbarrel.com",
+    "brand": "Crate & Barrel",
+    "category": null
+  },
+  {
+    "domain": "potterybarn.com",
+    "brand": "Pottery Barn",
+    "category": null
+  },
+  {
+    "domain": "parachutehome.com",
+    "brand": "Parachute",
+    "category": null
+  },
+  {
+    "domain": "brooklinen.com",
+    "brand": "Brooklinen",
+    "category": null
+  },
+  {
+    "domain": "target.com",
+    "brand": "Target",
+    "category": null,
+    "marketplace": true
+  },
+  {
+    "domain": "walmart.com",
+    "brand": "Walmart",
+    "category": null,
+    "marketplace": true
+  },
+  {
+    "domain": "bestbuy.com",
+    "brand": "Best Buy",
+    "category": null,
+    "marketplace": true
+  },
+  {
+    "domain": "etsy.com",
+    "brand": "Etsy",
+    "category": null,
+    "marketplace": true
+  },
+  {
+    "domain": "shopify.com",
+    "brand": null,
+    "category": null,
+    "marketplace": true
+  }
 ]

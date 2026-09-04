@@ -59,10 +59,12 @@ final class PurchaseParserTests: XCTestCase {
         XCTAssertEqual(o.orderTotalCents, 23490)
     }
 
-    func testBeautyCategory() throws {
+    /// Fashion-only: a beauty order still parses, but its items carry no category,
+    /// so the review screen leaves them off and they never reach the taste vector.
+    func testNonFashionItemsHaveNoCategory() throws {
         let o = try XCTUnwrap(PurchaseParser.parse(try fixture("email_sephora_beauty")))
         XCTAssertEqual(o.items.count, 2)
-        XCTAssertEqual(o.items[0].category, "beauty")
+        XCTAssertNil(o.items[0].category)
         XCTAssertEqual(o.items[1].brand, "Glossier")
     }
 

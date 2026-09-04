@@ -28,7 +28,7 @@ struct FeedView: View {
             } else if store.category == .following {
                 EmptyStateView(icon: "person.2", title: "Nothing here yet", message: "Follow creators and brands to see their posts here.")
             } else {
-                EmptyStateView(icon: "sparkles", title: "\(store.category.title) is coming soon", message: "We're still stocking this shelf.")
+                EmptyStateView(icon: "sparkles", title: "Nothing here yet", message: "Pull to refresh in a moment.")
             }
         } else {
             FeedPagerView(store: store, model: model)
