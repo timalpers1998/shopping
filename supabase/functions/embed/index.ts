@@ -1,6 +1,7 @@
 // Computes gte-small text embeddings for posts, products, style anchors and brands.
 // Called by a database webhook ({table,id}), by pg_cron ({mode:"sweep"}), or ad hoc ({text}).
 import { admin, error, isTrusted, json, SUPABASE_URL } from "../_shared/admin.ts";
+import { tagPost, taggerEnabled } from "./tagger.ts";
 
 /** First trusted call after deploy writes the settings the database needs to call back into functions. */
 async function ensureSettings() {
@@ -24,10 +25,30 @@ async function embed(text: string): Promise<number[]> {
 
 type Pending = { table: string; id: string; text: string };
 
+/** Posts without style tags get them from Claude first, then the embedding text is rebuilt. */
+async function maybeTag(r: Pending): Promise<Pending> {
+  if (r.table !== "posts" || !taggerEnabled()) return r;
+  const { data: post } = await admin.from("posts").select("caption, category, style_tags, audience").eq("id", r.id).maybeSingle();
+  if (!post || (post.style_tags ?? []).length > 0) return r;
+  const { data: media } = await admin.from("post_media").select("external_url, thumbnail_url, storage_path").eq("post_id", r.id).order("position").limit(1).maybeSingle();
+  const { data: prods } = await admin.from("post_products").select("products(title, brand)").eq("post_id", r.id);
+  const imageUrl = media?.external_url ?? media?.thumbnail_url ?? (media?.storage_path ? `${SUPABASE_URL}/storage/v1/object/public/media/${media.storage_path}` : null);
+  // deno-lint-ignore no-explicit-any
+  const products = (prods ?? []).map((x: any) => x.products ? `${x.products.title} by ${x.products.brand ?? ""}`.trim() : "").filter(Boolean);
+  const tags = await tagPost({ imageUrl, caption: post.caption, products, category: post.category });
+  if (!tags) return r;
+  const update: Record<string, unknown> = { style_tags: tags.style_tags };
+  if (post.audience === "unisex" && tags.audience !== "unknown") update.audience = tags.audience;
+  await admin.from("posts").update(update).eq("id", r.id);
+  const { data: text } = await admin.rpc("post_embedding_text", { p_post_id: r.id });
+  return { ...r, text: typeof text === "string" ? text : r.text };
+}
+
 async function processRows(rows: Pending[]) {
   const failed: { id: string; error: string }[] = [];
   let processed = 0;
-  for (const r of rows) {
+  for (const row of rows) {
+    const r = await maybeTag(row);
     try {
       if (!r.text || r.text.trim().length === 0) continue;
       const vec = await embed(r.text.slice(0, 2000));

@@ -23,6 +23,10 @@ else
   echo "EMBED_WEBHOOK_SECRET=$SECRET" >> "$ENVF"
 fi
 npx supabase secrets set EMBED_WEBHOOK_SECRET="$SECRET" IP_SALT="$(openssl rand -hex 8)"
+# Optional: Claude style tagger for posts without style tags (set ANTHROPIC_API_KEY in supabase/.env to enable).
+if grep -q '^ANTHROPIC_API_KEY=' "$ENVF" 2>/dev/null; then
+  npx supabase secrets set ANTHROPIC_API_KEY="$(grep '^ANTHROPIC_API_KEY=' "$ENVF" | cut -d= -f2-)" STYLE_TAGGER_ENABLED=true
+fi
 
 npx supabase functions deploy embed scrape-product merge-anonymous ingest-catalog
 npx supabase functions deploy redirect --no-verify-jwt

@@ -20,6 +20,11 @@ Order emails are read and parsed on the phone; only brand, product, price, date 
 - Unit: `xcodebuild test -scheme Feed -only-testing:FeedTests ...`
 - UI (fixtures, no backend): `-only-testing:FeedUITests` covers feed paging, carousel, click-out, like, comments, profile, pager, settings, composer (seeded draft), onboarding quiz. Screenshots land in `/tmp/*.png`.
 
+## Content
+- Dev seed: `npm run fixtures` regenerates `Feed/Resources/Fixtures/*.json` and `supabase/seed.sql`.
+- Real catalogs: `node scripts/ingest-shopify.mjs --ref <project-ref>` pulls public Shopify product feeds for the brands in `scripts/shopify-brands.json` and ingests them as brand posts with the merchant's photos (`EMBED_WEBHOOK_SECRET` from `supabase/.env`). `scripts/ingest.sh` does the same for a CSV.
+- Style tagger: with `ANTHROPIC_API_KEY` in `supabase/.env`, `scripts/deploy.sh` enables a Claude pass that labels untagged posts (image + caption + products) with the quiz vocabulary before embedding, so lazy captions still rank.
+
 ## Backend checks without Docker
 `npm run db:test` runs every migration plus the seed inside PGlite (in-process Postgres with pgvector) and exercises the feed: cold start, paging, quiz → taste vector, likes → re-ranking, following, saves, comments, redirects, anonymous merge.
 

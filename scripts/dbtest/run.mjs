@@ -175,6 +175,29 @@ async function main() {
   const after = (await sql(`select (select count(*) from purchase_signals where user_id = $1) n, (select price_band from profiles where id = $1) band, (select purchase_vec is null from user_taste where user_id = $1) cleared`, [real])).rows[0];
   console.log("deleted:", del.deleted, "remaining:", after.n, "band:", after.band, "purchase_vec cleared:", after.cleared);
   if (Number(after.n) !== 0 || after.band !== null || !after.cleared) throw new Error("delete_purchase_signals incomplete");
+  // Catalog ingest (Shopify sample) → brand authors + product posts, visible in the feed once embedded
+  const sample = JSON.parse(readFileSync("scripts/shopify-sample.json", "utf8"));
+  let created = 0;
+  for (const { brand, rows } of sample) {
+    const products = rows.map((r) => ({ title: r.title, url: r.url, image_url: r.image_url, description: r.description, brand: r.brand,
+      price_cents: Math.round(parseFloat(r.price) * 100), currency: r.currency, category: r.category, external_id: r.external_id }));
+    const res = (await sql(`select ingest_products($1::jsonb) f`, [JSON.stringify({ network: "generic", category: rows[0].category,
+      brand: { handle: brand.handle, display_name: brand.name, website_url: "https://" + brand.domain }, style_tags: brand.style_tags ?? [], products })])).rows[0].f;
+    created += res.posts_created;
+  }
+  const again = (await sql(`select ingest_products($1::jsonb) f`, [JSON.stringify({ network: "generic", category: "fashion", brand: { handle: sample[0].brand.handle, display_name: sample[0].brand.name },
+    products: sample[0].rows.slice(0, 2).map((r) => ({ title: r.title, url: r.url, image_url: r.image_url, brand: r.brand, price_cents: 100, currency: "USD", external_id: r.external_id })) })])).rows[0].f;
+  console.log("ingested posts:", created, "re-run creates:", again.posts_created, "updates:", again.products_updated);
+  if (created < 30 || again.posts_created !== 0 || again.products_updated !== 2) throw new Error("ingest_products unexpected");
+  const beauty = (await sql(`select count(*) n from posts where category = 'beauty' and source = 'ingest'`)).rows[0].n;
+  for (const r of (await sql(`select id, style_tags from posts where source = 'ingest' and embedding is null`)).rows)
+    await sql(`select set_embedding('posts', $1, 'x', $2::vector, 'fake')`, [r.id, vecFor(r.style_tags.length ? r.style_tags : ["minimalist"])]);
+  const s4 = "77777777-7777-4777-a777-777777777777";
+  const bf = (await sql(`select get_feed('beauty', $1, null, 10) f`, [s4])).rows[0].f;
+  const ff = (await sql(`select get_feed('for_you', $1, null, 30) f`, [s4])).rows[0].f;
+  let runs = 0; for (let i = 3; i < ff.items.length; i++) if (ff.items[i].kind === ff.items[i-1].kind && ff.items[i].kind === ff.items[i-2].kind && ff.items[i].kind === ff.items[i-3].kind) runs++;
+  console.log("beauty posts ingested:", beauty, "beauty feed:", bf.items.length, "for_you w/ ingest:", ff.items.length, "4-in-a-row same format:", runs);
+  if (Number(beauty) === 0 || bf.items.length === 0) throw new Error("beauty feed should be populated by ingest");
   console.log("\nALL DB CHECKS PASSED");
 }
 main().catch((e) => { console.error("FAILED:", e.message); process.exit(1); });

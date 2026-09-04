@@ -1,0 +1,105 @@
+[
+  {
+    "name": "Alo Yoga",
+    "handle": "aloyoga",
+    "domain": "www.aloyoga.com",
+    "category": "fashion",
+    "audience": "womens",
+    "style_tags": [
+      "athleisure"
+    ]
+  },
+  {
+    "name": "Allbirds",
+    "handle": "allbirds",
+    "domain": "www.allbirds.com",
+    "category": "fashion",
+    "audience": "unisex",
+    "style_tags": [
+      "minimalist",
+      "athleisure"
+    ]
+  },
+  {
+    "name": "Glossier",
+    "handle": "glossier",
+    "domain": "www.glossier.com",
+    "category": "beauty",
+    "audience": "womens",
+    "style_tags": [
+      "model_off_duty"
+    ]
+  },
+  {
+    "name": "Aimé Leon Dore",
+    "handle": "aimeleondore",
+    "domain": "www.aimeleondore.com",
+    "category": "fashion",
+    "audience": "mens",
+    "style_tags": [
+      "streetwear",
+      "preppy"
+    ]
+  },
+  {
+    "name": "Kith",
+    "handle": "kith",
+    "domain": "kith.com",
+    "category": "fashion",
+    "audience": "unisex",
+    "style_tags": [
+      "streetwear"
+    ]
+  },
+  {
+    "name": "Frankies Bikinis",
+    "handle": "frankiesbikinis",
+    "domain": "frankiesbikinis.com",
+    "category": "fashion",
+    "audience": "womens",
+    "style_tags": [
+      "coastal",
+      "y2k"
+    ]
+  },
+  {
+    "name": "Outdoor Voices",
+    "handle": "outdoorvoices",
+    "domain": "www.outdoorvoices.com",
+    "category": "fashion",
+    "audience": "unisex",
+    "style_tags": [
+      "athleisure"
+    ]
+  },
+  {
+    "name": "Parachute",
+    "handle": "parachute",
+    "domain": "www.parachutehome.com",
+    "category": "home",
+    "audience": "unisex",
+    "style_tags": [
+      "minimalist"
+    ]
+  },
+  {
+    "name": "Brooklinen",
+    "handle": "brooklinen",
+    "domain": "www.brooklinen.com",
+    "category": "home",
+    "audience": "unisex",
+    "style_tags": [
+      "minimalist"
+    ]
+  },
+  {
+    "name": "Rhode",
+    "handle": "rhode",
+    "domain": "www.rhodeskin.com",
+    "category": "beauty",
+    "audience": "womens",
+    "style_tags": [
+      "model_off_duty"
+    ]
+  }
+]
