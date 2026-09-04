@@ -164,12 +164,15 @@ struct PurchaseTile: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             ZStack(alignment: .topTrailing) {
-                LazyImage(url: item.imageUrl.flatMap(URL.init(string:))) { state in
-                    if let image = state.image { image.resizable().scaledToFill() } else { Rectangle().fill(Theme.surfaceElevated).overlay(Image(systemName: "bag").foregroundStyle(.secondary)) }
-                }
-                .pipeline(.feed)
-                .aspectRatio(3/4, contentMode: .fill)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                Color.clear
+                    .aspectRatio(3/4, contentMode: .fit)
+                    .overlay {
+                        LazyImage(url: item.imageUrl.flatMap(URL.init(string:))) { state in
+                            if let image = state.image { image.resizable().scaledToFill() } else { Rectangle().fill(Theme.surfaceElevated).overlay(Image(systemName: "bag").foregroundStyle(.secondary)) }
+                        }
+                        .pipeline(.feed)
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                 Image(systemName: item.included ? "checkmark.circle.fill" : "circle").font(.title3).foregroundStyle(.white, item.included ? .blue : .black.opacity(0.4)).padding(6)
             }
             Text(item.title).font(.caption2).lineLimit(2)

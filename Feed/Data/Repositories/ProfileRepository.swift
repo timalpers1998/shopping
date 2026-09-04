@@ -7,6 +7,7 @@ protocol ProfileRepository: Sendable {
     func authorPosts(id: UUID, cursor: String?) async throws -> PostPage
     func savedPosts(cursor: String?) async throws -> PostPage
     func createCreatorAuthor(handle: String, displayName: String) async throws -> Author
+    func updateDisplayName(_ name: String) async throws
 }
 
 struct LiveProfileRepository: ProfileRepository {
@@ -31,6 +32,10 @@ struct LiveProfileRepository: ProfileRepository {
     func createCreatorAuthor(handle: String, displayName: String) async throws -> Author {
         try await client.rpc("create_creator_author", params: CreateAuthorParams(pHandle: handle, pDisplayName: displayName)).execute().value
     }
+    func updateDisplayName(_ name: String) async throws {
+        let uid = try await client.auth.session.user.id
+        try await client.from("profiles").update(["display_name": name]).eq("id", value: uid).execute()
+    }
 }
 
 /// Fixture-backed profile data for previews, UI tests and offline work.
@@ -54,4 +59,5 @@ struct MockProfileRepository: ProfileRepository {
     func createCreatorAuthor(handle: String, displayName: String) async throws -> Author {
         Author(id: UUID(), handle: handle, displayName: displayName, kind: .creator)
     }
+    func updateDisplayName(_ name: String) async throws {}
 }
