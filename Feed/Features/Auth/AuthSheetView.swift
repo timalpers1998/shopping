@@ -41,18 +41,26 @@ struct AuthSheetView: View {
                     .textContentType(.emailAddress).keyboardType(.emailAddress).textInputAutocapitalization(.never).autocorrectionDisabled()
                     .padding(14).background(Theme.surface, in: RoundedRectangle(cornerRadius: 12))
                     .accessibilityIdentifier("auth-email")
-                Button { Task { await sendCode() } } label: { label("Send code") }
+                Button { Task { await sendCode() } } label: { label("Email me a sign-in link") }
                     .disabled(busy || !email.contains("@"))
                     .accessibilityIdentifier("auth-send-code")
             } else {
-                Text("We sent a 6-digit code to \(email)").font(.footnote).foregroundStyle(.secondary)
-                TextField("123456", text: $code)
-                    .textContentType(.oneTimeCode).keyboardType(.numberPad).font(.title2.monospacedDigit()).multilineTextAlignment(.center)
-                    .padding(14).background(Theme.surface, in: RoundedRectangle(cornerRadius: 12))
-                    .accessibilityIdentifier("auth-code")
-                Button { Task { await verify() } } label: { label("Verify") }
-                    .disabled(busy || code.count < 6)
-                    .accessibilityIdentifier("auth-verify")
+                VStack(spacing: 6) {
+                    Image(systemName: "envelope.open").font(.title)
+                    Text("Check \(email)").font(.headline)
+                    Text("Tap the sign-in link in the email on this phone and you'll land back here signed in.").font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                }
+                .padding(.vertical, 8)
+                DisclosureGroup("Got a code instead?") {
+                    TextField("123456", text: $code)
+                        .textContentType(.oneTimeCode).keyboardType(.numberPad).font(.title2.monospacedDigit()).multilineTextAlignment(.center)
+                        .padding(14).background(Theme.surface, in: RoundedRectangle(cornerRadius: 12))
+                        .accessibilityIdentifier("auth-code")
+                    Button { Task { await verify() } } label: { label("Verify code") }
+                        .disabled(busy || code.count < 6)
+                        .accessibilityIdentifier("auth-verify")
+                }
+                .font(.footnote).foregroundStyle(.secondary)
                 Button("Use a different email") { codeSent = false; code = "" }.font(.footnote).foregroundStyle(.secondary)
             }
 
@@ -64,6 +72,9 @@ struct AuthSheetView: View {
         .padding(20)
         .background(Theme.background)
         .foregroundStyle(.white)
+        .onChange(of: env.auth?.state.isSignedIn ?? false) { _, signedIn in
+            if signedIn { Task { await env.refreshMe(); dismiss() } }
+        }
     }
 
     private func label(_ text: String) -> some View {
