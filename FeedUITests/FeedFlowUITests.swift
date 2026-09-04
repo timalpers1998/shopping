@@ -7,7 +7,7 @@ final class FeedFlowUITests: XCTestCase {
     override func setUp() {
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launchArguments += ["-ui-testing"]
+        app.launchArguments += ["-ui-testing", "-use-fixtures"]
         app.launch()
     }
 

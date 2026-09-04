@@ -1,0 +1,57 @@
+# Supabase project config. Hosted project settings (auth providers, anonymous sign-in) are managed in the dashboard;
+# this file mainly drives the CLI (`supabase link`, `db push`, `functions deploy`) and local dev if Docker is ever installed.
+project_id = "feed"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 17
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[storage]
+enabled = true
+file_size_limit = "100MiB"
+
+[auth]
+enabled = true
+site_url = "feed://auth/callback"
+additional_redirect_urls = ["feed://auth/callback"]
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+enable_signup = true
+enable_anonymous_sign_ins = true
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = false
+enable_confirmations = false
+otp_length = 6
+otp_expiry = 3600
+
+[edge_runtime]
+enabled = true
+policy = "per_worker"
+
+[functions.redirect]
+verify_jwt = false
+
+[functions.embed]
+verify_jwt = false
+
+[functions.ingest-catalog]
+verify_jwt = false
+
+[functions.merge-anonymous]
+verify_jwt = true
+
+[functions.scrape-product]
+verify_jwt = true

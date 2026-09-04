@@ -69,6 +69,7 @@ struct MainTabView: View {
             }
         }
         .task {
+            await env.start()
             if feedModel == nil { feedModel = FeedViewModel(environment: env) }
         }
         .onChange(of: router.selectedTab) { _, tab in feedModel?.isVisible = (tab == .feed) }

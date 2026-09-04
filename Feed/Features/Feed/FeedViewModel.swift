@@ -62,28 +62,56 @@ final class FeedViewModel {
 
     func toggleLike(_ post: Post) {
         let liked = !post.viewer.liked
-        for s in stores.values {
-            s.mutate(post.id) { p in p.viewer.liked = liked; p.stats.likes += liked ? 1 : -1 }
+        setLiked(post.id, liked, delta: liked ? 1 : -1)
+        if env.usingFixtures { track(liked ? .like : .unlike, post: post); return }
+        Task {
+            do {
+                let r = try await env.socialRepository.toggleLike(postId: post.id)
+                for s in stores.values { s.mutate(post.id) { p in p.viewer.liked = r.active; p.stats.likes = r.count } }
+            } catch {
+                setLiked(post.id, !liked, delta: liked ? -1 : 1)
+            }
         }
-        track(liked ? .like : .unlike, post: post)
     }
 
     func toggleSave(_ post: Post) {
         let saved = !post.viewer.saved
-        for s in stores.values {
-            s.mutate(post.id) { p in p.viewer.saved = saved; p.stats.saves += saved ? 1 : -1 }
+        setSaved(post.id, saved, delta: saved ? 1 : -1)
+        if env.usingFixtures { track(saved ? .save : .unsave, post: post); return }
+        Task {
+            do {
+                let r = try await env.socialRepository.toggleSave(postId: post.id)
+                for s in stores.values { s.mutate(post.id) { p in p.viewer.saved = r.active; p.stats.saves = r.count } }
+            } catch {
+                setSaved(post.id, !saved, delta: saved ? -1 : 1)
+            }
         }
-        track(saved ? .save : .unsave, post: post)
     }
 
     func toggleFollow(_ post: Post) {
         let following = !post.author.isFollowing
-        for s in stores.values {
-            for item in s.items where item.author.id == post.author.id {
-                s.mutate(item.id) { p in p.author.isFollowing = following }
+        setFollowing(post.author.id, following)
+        if env.usingFixtures { track(following ? .follow : .unfollow, post: post); return }
+        Task {
+            do {
+                let r = try await env.socialRepository.toggleFollow(authorId: post.author.id)
+                setFollowing(post.author.id, r.active)
+            } catch {
+                setFollowing(post.author.id, !following)
             }
         }
-        track(following ? .follow : .unfollow, post: post)
+    }
+
+    private func setLiked(_ id: UUID, _ liked: Bool, delta: Int) {
+        for s in stores.values { s.mutate(id) { p in p.viewer.liked = liked; p.stats.likes = max(0, p.stats.likes + delta) } }
+    }
+    private func setSaved(_ id: UUID, _ saved: Bool, delta: Int) {
+        for s in stores.values { s.mutate(id) { p in p.viewer.saved = saved; p.stats.saves = max(0, p.stats.saves + delta) } }
+    }
+    private func setFollowing(_ authorId: UUID, _ following: Bool) {
+        for s in stores.values {
+            for item in s.items where item.author.id == authorId { s.mutate(item.id) { p in p.author.isFollowing = following } }
+        }
     }
 
     func openProduct(_ product: Product, in post: Post) {

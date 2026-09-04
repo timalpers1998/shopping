@@ -3,9 +3,12 @@
   "private": true,
   "description": "Dev tooling for the Feed app (Supabase CLI via npm; no Homebrew CLT dependency)",
   "devDependencies": {
+    "@electric-sql/pglite": "^0.2.17",
     "supabase": "^2.0.0"
   },
   "scripts": {
-    "supabase": "supabase"
+    "supabase": "supabase",
+    "db:test": "node scripts/dbtest/run.mjs",
+    "fixtures": "node scripts/gen-fixtures.mjs && node scripts/gen-seed.mjs"
   }
 }
