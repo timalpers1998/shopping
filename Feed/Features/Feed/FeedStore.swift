@@ -30,6 +30,14 @@ final class FeedStore {
 
     var currentIndex: Int? { currentPostID.flatMap { id in items.firstIndex { $0.id == id } } }
 
+    func installStatic(posts: [Post], startAt index: Int) {
+        items = posts
+        seenIds = Set(posts.map(\.id))
+        hasMore = false
+        loadedAt = Date()
+        currentPostID = posts.indices.contains(index) ? posts[index].id : posts.first?.id
+    }
+
     func loadInitialIfNeeded() async {
         guard items.isEmpty, loadedAt == nil else { return }
         await refresh()
@@ -70,6 +78,12 @@ final class FeedStore {
         } catch {
             if !Task.isCancelled { self.error = error.localizedDescription }
         }
+    }
+
+    func prepend(_ post: Post) {
+        guard seenIds.insert(post.id).inserted else { return }
+        items.insert(post, at: 0)
+        if loadedAt == nil { loadedAt = Date() }
     }
 
     func update(_ post: Post) {

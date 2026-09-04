@@ -13,6 +13,10 @@ A never-ending, hyper-personalized vertical feed of shoppable posts from creator
 4. Backend (hosted Supabase): run `npx supabase login` once, then `scripts/deploy.sh <project-ref> --seed`. The script links, pushes migrations + dev seed, deploys edge functions, writes `Feed/Config/Secrets.xcconfig`, and runs the embedding sweep.
 5. In the Supabase dashboard: Authentication → Providers → enable **Anonymous sign-ins** and Email (OTP). Add `feed://auth/callback` to redirect URLs.
 
+## Tests
+- Unit: `xcodebuild test -scheme Feed -only-testing:FeedTests ...`
+- UI (fixtures, no backend): `-only-testing:FeedUITests` covers feed paging, carousel, click-out, like, comments, profile, pager, settings, composer (seeded draft), onboarding quiz. Screenshots land in `/tmp/*.png`.
+
 ## Backend checks without Docker
 `npm run db:test` runs every migration plus the seed inside PGlite (in-process Postgres with pgvector) and exercises the feed: cold start, paging, quiz → taste vector, likes → re-ranking, following, saves, comments, redirects, anonymous merge.
 
@@ -20,8 +24,8 @@ A never-ending, hyper-personalized vertical feed of shoppable posts from creator
 - [x] M0 Bootstrap
 - [x] M1 Static feed
 - [~] M2 Live backend (schema, RPCs, functions written and validated in PGlite; awaiting hosted project link)
-- [ ] M3 Auth + social
-- [ ] M4 Composer (images)
-- [ ] M5 Video
-- [ ] M6 Comments
-- [ ] M7 Onboarding quiz + redirect + ingest
+- [x] M3 Auth + social (Apple + email OTP sheet, anonymous merge, profiles, saved, post pager, settings, dev menu)
+- [x] M4 Composer (photos/video picker, resize/export, product link scraping, create_post)
+- [x] M5 Video (player pool, autoplay muted, loop, tap to unmute)
+- [x] M6 Comments (sheet, optimistic insert, delete own)
+- [~] M7 Onboarding quiz done; redirect + ingest functions written, awaiting hosted deploy

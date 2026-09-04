@@ -7,17 +7,48 @@ final class FeedViewModel {
     private let env: AppEnvironment
     private(set) var stores: [FeedCategory: FeedStore] = [:]
     var selectedCategory: FeedCategory = .forYou
-    var isVisible = true { didSet { if isVisible != oldValue { isVisible ? resumeImpression() : impressions.end() } } }
+    var isVisible = true {
+        didSet {
+            guard isVisible != oldValue else { return }
+            if isVisible { resumeImpression(); if let id = store.currentPostID { players.resume(id) } }
+            else { impressions.end(); players.pauseAll() }
+        }
+    }
 
     let impressions: ImpressionTracker
+    let players = VideoPlayerPool()
     private let prefetcher = FeedPrefetcher()
 
     init(environment: AppEnvironment) {
         self.env = environment
         self.impressions = environment.makeImpressionTracker()
+        players.onLoop = { [weak self] id in self?.videoLooped(id) }
+    }
+
+    private func videoLooped(_ postId: UUID) {
+        guard let post = store.items.first(where: { $0.id == postId }) else { return }
+        track(.videoComplete, post: post)
+    }
+
+    /// Video players for the active post and its neighbours.
+    private func syncPlayers(in store: FeedStore, index: Int) {
+        let window = max(0, index - 1)...min(store.items.count - 1, index + 1)
+        let keep = store.items[window].compactMap { p -> (id: UUID, url: URL)? in
+            guard p.kind == .video, let url = p.media.first?.url else { return nil }
+            return (p.id, url)
+        }
+        players.assign(keep: keep, active: isVisible ? store.currentPostID : nil)
     }
 
     var store: FeedStore { store(for: selectedCategory) }
+
+    /// Use this model as a pager over a fixed list of posts (profile grid, saved tab).
+    func installStatic(posts: [Post], startAt index: Int) {
+        let s = FeedStore(category: .forYou, repository: StaticFeedRepository(posts: posts), sessionId: env.sessionId, pageSize: max(posts.count, 1))
+        s.installStatic(posts: posts, startAt: index)
+        stores[.forYou] = s
+        selectedCategory = .forYou
+    }
 
     func store(for category: FeedCategory) -> FeedStore {
         if let s = stores[category] { return s }
@@ -32,6 +63,7 @@ final class FeedViewModel {
             return
         }
         impressions.end()
+        players.pauseAll()
         selectedCategory = category
         Task {
             let s = store(for: category)
@@ -51,6 +83,7 @@ final class FeedViewModel {
         if isVisible { impressions.begin(post: post, index: index, category: store.category) }
         store.loadMoreIfNeeded(currentIndex: index)
         prefetcher.update(posts: store.items, currentIndex: index)
+        syncPlayers(in: store, index: index)
     }
 
     private func resumeImpression() {
@@ -100,6 +133,16 @@ final class FeedViewModel {
                 setFollowing(post.author.id, !following)
             }
         }
+    }
+
+    /// A freshly published post shows up at the top of Following (and For You in fixtures mode).
+    func insertNewPost(_ post: Post) {
+        store(for: .following).prepend(post)
+        if env.usingFixtures { store(for: .forYou).prepend(post) }
+    }
+
+    func adjustCommentCount(postId: UUID, by delta: Int) {
+        for s in stores.values { s.mutate(postId) { p in p.stats.comments = max(0, p.stats.comments + delta) } }
     }
 
     private func setLiked(_ id: UUID, _ liked: Bool, delta: Int) {

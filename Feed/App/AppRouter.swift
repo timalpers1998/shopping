@@ -19,11 +19,13 @@ enum SheetRoute: Identifiable, Hashable {
 enum CoverRoute: Identifiable, Hashable {
     case productBrowser(URL)
     case compose
+    case onboarding
 
     var id: String {
         switch self {
         case .productBrowser(let u): "browser-\(u.absoluteString)"
         case .compose: "compose"
+        case .onboarding: "onboarding"
         }
     }
 }
@@ -31,6 +33,8 @@ enum CoverRoute: Identifiable, Hashable {
 enum Route: Hashable {
     case profile(authorId: UUID)
     case post(postId: UUID)
+    case pager(PostPagerPayload)
+    case settings
 }
 
 @MainActor

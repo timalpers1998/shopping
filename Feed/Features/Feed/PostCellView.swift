@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 struct PostCellView: View {
     let post: Post
@@ -9,7 +10,7 @@ struct PostCellView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            PostMediaView(post: post, isActive: isActive, mediaIndex: $mediaIndex)
+            PostMediaView(post: post, isActive: isActive, mediaIndex: $mediaIndex, player: post.kind == .video ? model.players.player(for: post.id) : nil)
                 .onChange(of: mediaIndex) { _, i in if isActive { model.impressions.mediaShown(index: i) } }
 
             LinearGradient(colors: [.clear, .black.opacity(0.75)], startPoint: .init(x: 0.5, y: 0.45), endPoint: .bottom)
@@ -37,6 +38,7 @@ struct PostMediaView: View {
     let post: Post
     let isActive: Bool
     @Binding var mediaIndex: Int
+    var player: AVPlayer? = nil
 
     var body: some View {
         switch post.kind {
@@ -45,12 +47,7 @@ struct PostMediaView: View {
         case .carousel:
             CarouselView(media: post.media, index: $mediaIndex)
         case .video:
-            // Video playback lands in M5; until then show the poster with a play badge.
-            FeedImage(url: post.media.first?.thumbnailUrl ?? post.media.first?.url, isPortrait: true)
-                .overlay(alignment: .topTrailing) {
-                    Label("Video", systemImage: "play.fill").font(.caption.bold()).padding(8)
-                        .background(.ultraThinMaterial, in: Capsule()).padding(.top, 60).padding(.trailing, 12)
-                }
+            VideoPlayerView(post: post, player: player, isActive: isActive)
         }
     }
 }

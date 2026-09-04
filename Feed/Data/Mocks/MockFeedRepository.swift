@@ -35,3 +35,11 @@ struct MockEventRepository: EventRepository {
         }
     }
 }
+
+/// Serves a fixed list (used by the post pager).
+struct StaticFeedRepository: FeedRepository {
+    let posts: [Post]
+    func fetchFeed(category: FeedCategory, sessionId: UUID, cursor: String?, limit: Int) async throws -> FeedPage {
+        FeedPage(requestId: "static", nextCursor: nil, items: posts)
+    }
+}
