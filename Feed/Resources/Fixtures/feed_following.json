@@ -6,7 +6,7 @@
       "id": "c709fafa-6de5-4a48-afb2-b3542788fd8c",
       "kind": "carousel",
       "caption": "the perfect camel coat for fall 🍂 wearing it with my go-to loafers and straight jeans",
-      "created_at": "2026-09-03T21:01:46.038Z",
+      "created_at": "2026-09-03T21:42:38.120Z",
       "category": "fashion",
       "style_tags": [
         "old_money",
@@ -63,7 +63,7 @@
           "price_cents": 129000,
           "currency": "USD",
           "url": "https://toteme-studio.com/products/signature-wool-cashmere-coat",
-          "image_url": "https://loremflickr.com/600/800/lookbook?lock=8",
+          "image_url": "https://loremflickr.com/600/800/ootd?lock=8",
           "position": 0
         },
         {
@@ -74,7 +74,7 @@
           "price_cents": 19500,
           "currency": "USD",
           "url": "https://www.coach.com/products/leather-loafer",
-          "image_url": "https://loremflickr.com/600/800/lookbook?lock=8",
+          "image_url": "https://loremflickr.com/600/800/ootd?lock=8",
           "position": 1
         },
         {
@@ -85,7 +85,7 @@
           "price_cents": 9800,
           "currency": "USD",
           "url": "https://www.levi.com/US/en_US/clothing/women/jeans/501-original-fit-womens-jeans/p/125010400",
-          "image_url": "https://loremflickr.com/600/800/lookbook?lock=7",
+          "image_url": "https://loremflickr.com/600/800/fashion?lock=7",
           "position": 2
         }
       ],
@@ -103,7 +103,7 @@
       "id": "26f311a0-de14-458c-adae-d30204f6e39c",
       "kind": "carousel",
       "caption": "New season basics. The box-cut tee and the drape pant, together at last.",
-      "created_at": "2026-09-02T01:49:46.039Z",
+      "created_at": "2026-09-02T02:30:38.126Z",
       "category": "fashion",
       "style_tags": [
         "minimalist"
@@ -148,7 +148,7 @@
           "price_cents": 3500,
           "currency": "USD",
           "url": "https://www.everlane.com/products/womens-organic-cotton-box-cut-tee",
-          "image_url": "https://loremflickr.com/600/800/lookbook?lock=2",
+          "image_url": "https://loremflickr.com/600/800/ootd?lock=2",
           "position": 0
         },
         {
@@ -159,7 +159,7 @@
           "price_cents": 11800,
           "currency": "USD",
           "url": "https://www.everlane.com/products/womens-way-high-drape-pant",
-          "image_url": "https://loremflickr.com/600/800/lookbook?lock=6",
+          "image_url": "https://loremflickr.com/600/800/fashion?lock=6",
           "position": 1
         }
       ],
@@ -177,7 +177,7 @@
       "id": "55a8c2c7-d362-4787-aa22-cc47bad34a52",
       "kind": "image",
       "caption": "picnic dress season is here 🌸",
-      "created_at": "2026-09-01T01:49:46.039Z",
+      "created_at": "2026-09-01T02:30:38.126Z",
       "category": "fashion",
       "style_tags": [
         "cottagecore",
@@ -213,7 +213,7 @@
           "price_cents": 27800,
           "currency": "USD",
           "url": "https://www.thereformation.com/products/midi-dress",
-          "image_url": "https://loremflickr.com/600/800/lookbook?lock=1",
+          "image_url": "https://loremflickr.com/600/800/ootd?lock=1",
           "position": 0
         }
       ],

@@ -8,7 +8,8 @@ const pic = (seed, w = 1080, h = 1440) => `https://picsum.photos/seed/${seed}/${
 const TAG_BY_STYLE = { minimalist: "outfit", old_money: "blazer", streetwear: "hoodie", athleisure: "sneaker", workwear: "suit", scandi: "sweater", model_off_duty: "jeans", gorpcore: "jacket", coastal: "clothes", cottagecore: "skirt", y2k: "tshirt", preppy: "shirt", glam: "fashion", vintage: "denim", boho: "wardrobe", grunge: "leather", coquette: "model", western: "boots" };
 const TAG_BY_WORD = [["coat","jacket"],["loafer","shoes"],["jean","jeans"],["hoodie","hoodie"],["cargo","clothes"],["jordan","sneaker"],["legging","clothing"],["zip","hoodie"],["blazer","blazer"],["tank","tshirt"],["tee","tshirt"],["pant","jeans"],["shell","jacket"],["cardigan","sweater"],["xt-6","sneaker"],["dress","fashion"],["skirt","skirt"],["tote","handbag"],["linen","shirt"],["trench","jacket"],["cashmere","sweater"],["ballet","shoes"],["bow","fashion"],["boot","boots"],["flannel","shirt"],["polo","shirt"],["chino","clothes"],["hoody","hoodie"],["sweater","sweater"],["sequin","fashion"],["slip","fashion"],["leather","leather"],["set","clothing"],["samba","sneaker"],["bag","handbag"]];
 const hashNum = (s) => { let h = 0; for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h; };
-const tagFor = (text, styles = []) => "lookbook";
+const GOOD_TAGS = ["lookbook", "ootd", "clothing", "fashion", "model"];
+const tagFor = (text, styles = []) => GOOD_TAGS[hashNum(text || "x") % GOOD_TAGS.length];
 const postTag = (audience) => audience === "mens" ? "menswear" : "ootd";
 const img = (tag, seed, w = 1080, h = 1440) => `https://loremflickr.com/${w}/${h}/${tag}?lock=${1 + (hashNum(seed) % 9)}`;
 
