@@ -15,6 +15,7 @@ final class AppEnvironment {
     let composerRepository: ComposerRepository
     let tasteRepository: TasteRepository
     let purchaseRepository: PurchaseRepository
+    let discoverRepository: DiscoverRepository
     let mailProviders: [MailProvider]
     let eventTracker: EventTracker
     let clickOut: ClickOutService
@@ -37,6 +38,7 @@ final class AppEnvironment {
             composerRepository = LiveComposerRepository(client: client)
             tasteRepository = LiveTasteRepository(client: client)
             purchaseRepository = LivePurchaseRepository(client: client)
+            discoverRepository = LiveDiscoverRepository(client: client)
             var providers: [MailProvider] = [GmailProvider(clientId: AppConfig.googleOAuthClientId)]
             if ProcessInfo.processInfo.arguments.contains("-fixture-mailbox") { providers.append(FixtureMailProvider()) }
             mailProviders = providers
@@ -53,6 +55,7 @@ final class AppEnvironment {
             composerRepository = MockComposerRepository()
             tasteRepository = MockTasteRepository()
             purchaseRepository = MockPurchaseRepository()
+            discoverRepository = MockDiscoverRepository()
             mailProviders = [FixtureMailProvider()]
             eventTracker = EventTracker(repository: MockEventRepository())
             usingFixtures = true

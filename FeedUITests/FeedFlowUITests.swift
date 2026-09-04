@@ -239,3 +239,22 @@ final class PurchaseImportUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Not connected"].waitForExistence(timeout: 8))
     }
 }
+
+
+final class DiscoverUITests: XCTestCase {
+    func testTrendingAndSearch() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-ui-testing", "-use-fixtures", "-skip-onboarding"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["mia.styles"].firstMatch.waitForExistence(timeout: 10))
+        app.tabBars.buttons["Discover"].tap()
+        XCTAssertTrue(app.staticTexts["Trending products"].waitForExistence(timeout: 8))
+        XCTAssertTrue(app.buttons["trending-Double-faced wool wrap coat"].firstMatch.waitForExistence(timeout: 8))
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/discover.png"))
+        let field = app.textFields["discover-search"].firstMatch
+        field.tap()
+        field.typeText("cargo")
+        XCTAssertTrue(app.staticTexts["2 posts"].waitForExistence(timeout: 8), "two fixture posts mention cargo")
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "/tmp/discover-search.png"))
+    }
+}

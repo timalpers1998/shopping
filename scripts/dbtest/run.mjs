@@ -198,6 +198,11 @@ async function main() {
   let runs = 0; for (let i = 3; i < ff.items.length; i++) if (ff.items[i].kind === ff.items[i-1].kind && ff.items[i].kind === ff.items[i-2].kind && ff.items[i].kind === ff.items[i-3].kind) runs++;
   console.log("beauty posts ingested:", beauty, "beauty feed:", bf.items.length, "for_you w/ ingest:", ff.items.length, "4-in-a-row same format:", runs);
   if (Number(beauty) === 0 || bf.items.length === 0) throw new Error("beauty feed should be populated by ingest");
+  const sr = (await sql(`select search_posts('camel coat') f`)).rows[0].f;
+  const sr2 = (await sql(`select search_posts('lululemon pant') f`)).rows[0].f;
+  const tr = (await sql(`select trending_products(12) f`)).rows[0].f;
+  console.log("search 'camel coat':", sr.items.length, "first:", sr.items[0]?.caption?.slice(0, 40), "| 'lululemon pant':", sr2.items.length, "| trending:", tr.length);
+  if (sr.items.length === 0 || sr2.items.length === 0 || tr.length === 0) throw new Error("search/trending empty");
   console.log("\nALL DB CHECKS PASSED");
 }
 main().catch((e) => { console.error("FAILED:", e.message); process.exit(1); });

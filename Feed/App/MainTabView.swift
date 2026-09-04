@@ -33,9 +33,12 @@ struct MainTabView: View {
             .tabItem { Label("Home", systemImage: "house.fill") }
             .tag(AppTab.feed)
 
-            PlaceholderScreen(title: "Discover")
-                .tabItem { Label("Discover", systemImage: "magnifyingglass") }
-                .tag(AppTab.discover)
+            NavigationStack(path: $router.feedPath) {
+                DiscoverView()
+                    .navigationDestination(for: Route.self) { RouteView(route: $0) }
+            }
+            .tabItem { Label("Discover", systemImage: "magnifyingglass") }
+            .tag(AppTab.discover)
             PlaceholderScreen(title: "Compose")
                 .tabItem { Label("", systemImage: "plus.app.fill") }
                 .tag(AppTab.compose)
