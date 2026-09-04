@@ -1,6 +1,6 @@
 // Service-role only. Turns an affiliate/product feed (CSV or JSON rows) into a brand author, products and one image post per product.
 // POST { network, brand:{handle,display_name,avatar_url?,website_url?}, category, source:{rows:[...]} | {url} | {storage_path}, options:{dry_run?, max_rows?, style_tags?} }
-import { parse } from "@std/csv";
+import { parse } from "jsr:@std/csv@1";
 import { admin, error, isTrusted, json } from "../_shared/admin.ts";
 
 type Row = Record<string, string>;

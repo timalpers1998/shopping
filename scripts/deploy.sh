@@ -10,9 +10,9 @@ ENVF="supabase/.env"
 npx supabase link --project-ref "$REF"
 
 if [[ "$SEED" == "--seed" ]]; then
-  npx supabase db push --include-seed
+  npx supabase db push --include-seed --yes
 else
-  npx supabase db push
+  npx supabase db push --yes
 fi
 
 # Shared secret between Postgres (pg_net webhook) and the embed function. Generated once, kept in gitignored supabase/.env.

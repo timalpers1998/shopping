@@ -117,7 +117,7 @@ sql += `set session_replication_role = replica;\n`; // skip triggers? no: we wan
 sql = sql.replace("set session_replication_role = replica;\n", "");
 
 sql += `insert into auth.users (id, instance_id, aud, role, email, encrypted_password, email_confirmed_at, raw_app_meta_data, raw_user_meta_data, created_at, updated_at, is_anonymous)\nvalues\n`;
-sql += Object.values(users).map((u) => `  (${q(u.id)}, '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', ${q(u.email)}, crypt('password', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', ${q(JSON.stringify({ full_name: u.name }))}::jsonb, now(), now(), false)`).join(",\n") + `\non conflict (id) do nothing;\n`;
+sql += Object.values(users).map((u) => `  (${q(u.id)}, '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', ${q(u.email)}, extensions.crypt('password', extensions.gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', ${q(JSON.stringify({ full_name: u.name }))}::jsonb, now(), now(), false)`).join(",\n") + `\non conflict (id) do nothing;\n`;
 sql += `insert into auth.identities (id, user_id, provider_id, provider, identity_data, created_at, updated_at, last_sign_in_at)\nvalues\n`;
 sql += Object.values(users).map((u) => `  (gen_random_uuid(), ${q(u.id)}, ${q(u.id)}, 'email', ${q(JSON.stringify({ sub: u.id, email: u.email, email_verified: true }))}::jsonb, now(), now(), now())`).join(",\n") + `\non conflict do nothing;\n\n`;
 

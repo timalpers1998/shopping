@@ -1,8 +1,8 @@
 // Optional style tagger: asks Claude to label a post with the quiz vocabulary from its cover image + caption + products.
 // Enabled with STYLE_TAGGER_ENABLED=true and ANTHROPIC_API_KEY. Used before embedding so captions like "sunday fit" still rank.
-import Anthropic from "@anthropic-ai/sdk";
-import { z } from "zod";
-import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
+import Anthropic from "npm:@anthropic-ai/sdk";
+import { z } from "npm:zod@3";
+import { zodOutputFormat } from "npm:@anthropic-ai/sdk/helpers/zod";
 
 export const STYLE_VOCAB = [
   "minimalist", "old_money", "streetwear", "athleisure", "workwear", "scandi", "model_off_duty", "gorpcore", "coastal",

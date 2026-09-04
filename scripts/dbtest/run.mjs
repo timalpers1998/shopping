@@ -14,8 +14,8 @@ async function stubs() {
     create schema if not exists auth; create schema if not exists storage; create schema if not exists net; create schema if not exists cron; create schema if not exists extensions;
     create extension if not exists vector;
     create function gen_random_bytes(n int) returns bytea language sql volatile as $$ select decode(string_agg(lpad(to_hex((random()*255)::int),2,'0'),''), 'hex') from generate_series(1,n) $$;
-    create function gen_salt(t text) returns text language sql volatile as $$ select 'salt' $$;
-    create function crypt(p text, s text) returns text language sql immutable as $$ select md5(p || s) $$;
+    create function extensions.gen_salt(t text) returns text language sql volatile as $$ select 'salt' $$;
+    create function extensions.crypt(p text, s text) returns text language sql immutable as $$ select md5(p || s) $$;
     create table auth.users (id uuid primary key, instance_id uuid, aud text, role text, email text, encrypted_password text, email_confirmed_at timestamptz,
       raw_app_meta_data jsonb, raw_user_meta_data jsonb, created_at timestamptz default now(), updated_at timestamptz default now(), is_anonymous boolean default false, last_sign_in_at timestamptz default now());
     create table auth.identities (id uuid, user_id uuid, provider_id text, provider text, identity_data jsonb, created_at timestamptz, updated_at timestamptz, last_sign_in_at timestamptz, primary key (provider, provider_id));
@@ -175,6 +175,7 @@ async function main() {
   const after = (await sql(`select (select count(*) from purchase_signals where user_id = $1) n, (select price_band from profiles where id = $1) band, (select purchase_vec is null from user_taste where user_id = $1) cleared`, [real])).rows[0];
   console.log("deleted:", del.deleted, "remaining:", after.n, "band:", after.band, "purchase_vec cleared:", after.cleared);
   if (Number(after.n) !== 0 || after.band !== null || !after.cleared) throw new Error("delete_purchase_signals incomplete");
+  await sql(`insert into app_settings (key, value) values ('functions_base_url', 'http://stub/functions/v1'), ('embed_webhook_secret', 's') on conflict (key) do update set value = excluded.value`);
   // Catalog ingest (Shopify sample) → brand authors + product posts, visible in the feed once embedded
   const sample = JSON.parse(readFileSync("scripts/shopify-sample.json", "utf8"));
   let created = 0;
@@ -187,7 +188,9 @@ async function main() {
   }
   const again = (await sql(`select ingest_products($1::jsonb) f`, [JSON.stringify({ network: "generic", category: "fashion", brand: { handle: sample[0].brand.handle, display_name: sample[0].brand.name },
     products: sample[0].rows.slice(0, 2).map((r) => ({ title: r.title, url: r.url, image_url: r.image_url, brand: r.brand, price_cents: 100, currency: "USD", external_id: r.external_id })) })])).rows[0].f;
-  console.log("ingested posts:", created, "re-run creates:", again.posts_created, "updates:", again.products_updated);
+  const hooks = (await sql(`select count(*) n from net._calls where body->>'table' in ('posts','products')`)).rows[0].n;
+  console.log("ingested posts:", created, "re-run creates:", again.posts_created, "updates:", again.products_updated, "webhook calls:", hooks);
+  if (Number(hooks) === 0) throw new Error("embed webhook trigger did not fire");
   if (created < 30 || again.posts_created !== 0 || again.products_updated !== 2) throw new Error("ingest_products unexpected");
   const beauty = (await sql(`select count(*) n from posts where category = 'beauty' and source = 'ingest'`)).rows[0].n;
   for (const r of (await sql(`select id, style_tags from posts where source = 'ingest' and embedding is null`)).rows)

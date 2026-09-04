@@ -2,9 +2,9 @@
 -- Creators sign in with email OTP; passwords here are placeholders for local stacks only.
 insert into auth.users (id, instance_id, aud, role, email, encrypted_password, email_confirmed_at, raw_app_meta_data, raw_user_meta_data, created_at, updated_at, is_anonymous)
 values
-  ('69df055f-9fba-4534-a727-183c107df349', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'mia@example.com', crypt('password', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Mia Chen"}'::jsonb, now(), now(), false),
-  ('3e08d5c4-128b-451a-a97c-4bd93b86f300', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'theo@example.com', crypt('password', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Theo Alvarez"}'::jsonb, now(), now(), false),
-  ('9bbac068-5ab0-4c6f-aa9d-ad6b229442d9', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'june@example.com', crypt('password', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"June Okafor"}'::jsonb, now(), now(), false)
+  ('69df055f-9fba-4534-a727-183c107df349', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'mia@example.com', extensions.crypt('password', extensions.gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Mia Chen"}'::jsonb, now(), now(), false),
+  ('3e08d5c4-128b-451a-a97c-4bd93b86f300', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'theo@example.com', extensions.crypt('password', extensions.gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Theo Alvarez"}'::jsonb, now(), now(), false),
+  ('9bbac068-5ab0-4c6f-aa9d-ad6b229442d9', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'june@example.com', extensions.crypt('password', extensions.gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"June Okafor"}'::jsonb, now(), now(), false)
 on conflict (id) do nothing;
 insert into auth.identities (id, user_id, provider_id, provider, identity_data, created_at, updated_at, last_sign_in_at)
 values
