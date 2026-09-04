@@ -36,5 +36,5 @@ Order emails are read and parsed on the phone; only brand, product, price, date 
 - [x] M4 Composer (photos/video picker, resize/export, product link scraping, create_post)
 - [x] M5 Video (player pool, autoplay muted, loop, tap to unmute)
 - [x] M6 Comments (sheet, optimistic insert, delete own)
-- [~] M7 Onboarding quiz done; redirect + ingest functions written, awaiting hosted deploy
+- [x] M7 Onboarding quiz, redirect + ingest functions deployed
 - [x] M8 Purchase-history import (on-device Gmail scan, parser, review grid, taste blend, Settings delete)
